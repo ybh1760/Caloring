@@ -1,3 +1,5 @@
+import * as Permissions from 'expo-permissions'
+
 export const SET_USER_DATA = 'SET_USER_DATA'
 export const UPDATE_USER_DATA = 'UPDATE_USER_DATA'
 export const ATTACK = 'ATTACK'
@@ -5,7 +7,7 @@ export const ATTACK = 'ATTACK'
 export const setUser1Data = () => {
     return async dispatch => {
         try {
-            const response = await fetch(`15.164.129.166:8080/user?id=1`)
+            const response = await fetch(`http://15.164.129.166:8080/user?id=1`)
             if (!response.ok) {
                 throw new Error('response에 문제가 있어요')
             }
@@ -15,7 +17,7 @@ export const setUser1Data = () => {
             }
             dispatch({ type: SET_USER_DATA, userData: resData })
         } catch (err) {
-            console.log('로딩오류')
+            console.log(err.message)
             throw err
         }
     }

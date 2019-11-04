@@ -7,7 +7,10 @@ export default props => {
     return (
         <View style={styles.background}>
             <View
-                style={{ ...styles.content, backgroundColor: props.color }}
+                style={{
+                    ...styles.content,
+                    backgroundColor: props.color,
+                }}
             ></View>
         </View>
     )
@@ -19,11 +22,11 @@ const styles = StyleSheet.create({
         height: 20,
         borderRadius: 10,
         backgroundColor: Colors.barStatus,
-        padding: 2,
+        padding: 4,
     },
     content: {
         width: '33.33%',
-        height: 16,
+        height: 12,
         borderRadius: 10,
     },
 })

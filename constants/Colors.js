@@ -7,4 +7,5 @@ export default {
     fatGauge: '#ffaeae',
     attackRed: '#d60404',
     drawerBlue: '#657BFF',
+    itemBackColor: '#fcd21d',
 }

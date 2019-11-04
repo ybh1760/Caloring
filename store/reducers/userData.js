@@ -10,6 +10,7 @@ export default (state = initialState, action) => {
         case SET_USER_DATA:
             const newUserData = new UserData(
                 action.userData.id,
+                action.userData.name,
                 action.userData.exercising,
                 action.userData.goal,
                 action.userData.caloring,

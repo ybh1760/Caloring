@@ -13,7 +13,6 @@ import { useSelector } from 'react-redux'
 
 import HeaderButton from '../molecules/button/HeaderButton'
 import Bottom from '../organisms/main/Bottom'
-import SpeechBallon from '../atoms/Icon/speechBallon.svg'
 
 const { width, height } = Dimensions.get('window')
 

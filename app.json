@@ -25,7 +25,8 @@
                 "googleMaps": {
                     "apiKey": "AIzaSyAWBgBGsD__OeMglPaz408SIM7-myZCfvM"
                 }
-            }
+            },
+            "permissions": ["android.permission.INTERNET"]
         },
         "packagerOpts": {
             "config": "metro.config.js",
