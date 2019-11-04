@@ -1,7 +1,8 @@
 import React from 'react'
+import { View, StyleSheet, SafeAreaView } from 'react-native'
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
-import { createDrawerNavigator } from 'react-navigation-drawer'
+import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer'
 import { Ionicons } from '@expo/vector-icons'
 
 import HomePage from '../components/pages/HomePage'
@@ -42,6 +43,22 @@ const DrawerNavigator = createDrawerNavigator(
     },
     {
         contentOptions: { activeTintColor: 'red' },
+        contentComponent: props => {
+            return (
+                <View style={{ flex: 1 }}>
+                    <SafeAreaView style={{ flex: 1, paddingTop: 25 }}>
+                        <View
+                            style={{
+                                width: '100%',
+                                height: '30%',
+                                backgroundColor: Colors.drawerBlue,
+                            }}
+                        ></View>
+                        <DrawerItems {...props} />
+                    </SafeAreaView>
+                </View>
+            )
+        },
     }
 )
 

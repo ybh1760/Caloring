@@ -6,4 +6,5 @@ export default {
     calGauge: '#b0bcff',
     fatGauge: '#ffaeae',
     attackRed: '#d60404',
+    drawerBlue: '#657BFF',
 }

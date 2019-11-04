@@ -5,15 +5,21 @@ import {
     ImageBackground,
     Dimensions,
     Image,
+    View,
+    Text,
 } from 'react-native'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
+import { useSelector } from 'react-redux'
 
 import HeaderButton from '../molecules/button/HeaderButton'
 import Bottom from '../organisms/main/Bottom'
+import SpeechBallon from '../atoms/Icon/speechBallon.svg'
 
 const { width, height } = Dimensions.get('window')
 
 export default function HomePage(props) {
+    const dist = useSelector(state => state.distance.distance[0])
+
     return (
         <ImageBackground
             source={
@@ -21,12 +27,17 @@ export default function HomePage(props) {
             }
             style={styles.container}
         >
-            <Image
-                source={
-                    (src = require('../../assets/CharactorImg/penguin_1.png'))
-                }
-                style={styles.charactor}
-            />
+            <View style={styles.message}>
+                <Text>{dist}</Text>
+            </View>
+            <View style={styles.charactor}>
+                <Image
+                    source={
+                        (src = require('../../assets/CharactorImg/penguin_1.png'))
+                    }
+                    style={styles.image}
+                />
+            </View>
             <Bottom navigation={props.navigation} />
         </ImageBackground>
     )
@@ -76,7 +87,19 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     charactor: {
-        width: '45%',
-        height: height * 0.2,
+        width: 150,
+        height: 159,
+    },
+    image: {
+        width: '100%',
+        height: '100%',
+    },
+    message: {
+        width: 130,
+        height: 70,
+        borderRadius: 10,
+        backgroundColor: 'white',
+        elevation: 3,
+        marginBottom: 15,
     },
 })

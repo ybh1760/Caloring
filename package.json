@@ -32,6 +32,7 @@
         "redux-thunk": "^2.3.0"
     },
     "devDependencies": {
+        "babel-plugin-inline-import": "^3.0.0",
         "babel-preset-expo": "^7.1.0"
     },
     "private": true,

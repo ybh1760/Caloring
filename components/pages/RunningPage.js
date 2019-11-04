@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     StyleSheet,
     Text,
@@ -9,19 +9,23 @@ import {
 } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import * as Location from 'expo-location'
+import * as Permissions from 'expo-permissions'
 
 import * as timeActions from '../../store/actions/time'
 import * as distActions from '../../store/actions/distance'
 
+let resultId
+
 export default function MapPage(props) {
     const [isRunning, setIsRunnig] = useState(false)
     const [timeId, setTimeId] = useState()
-    const [disId, setDisId] = useState()
+
     const savedTimeStamp = useSelector(state => state.time.timeStamp)
     const timeIndex = savedTimeStamp.length - 1
 
     const savedDistance = useSelector(state => state.distance.distance)
     const disIndex = savedDistance.length - 1
+    // const watId = useSelector(state => state.distance.disId)
 
     const [meter, setMeter] = useState(
         savedDistance[disIndex] !== 0 ? savedDistance[disIndex] : 0
@@ -40,19 +44,34 @@ export default function MapPage(props) {
         setTimeId(time)
     }
 
+    const verifyPermissions = async () => {
+        const result = await Permissions.askAsync(Permissions.LOCATION)
+        if (result.status !== 'granted') {
+            Alert.alert(
+                'Insuffient Permissions',
+                'you need to grant gps permission',
+                [{ text: 'Okay' }]
+            )
+            return false
+        }
+        return true
+    }
+
     const watchPosition = async () => {
+        const hasPermission = await verifyPermissions()
+        if (!hasPermission) {
+            throw new Error('permission이 없어!!!!!')
+        }
+
         try {
             const result = await Location.watchPositionAsync(
-                { timeInterval: 10000, distanceInterval: 5 },
+                { accuracy: 6, timeInterval: 10000, distanceInterval: 1 },
                 position => {
-                    if (!meter) {
-                        setMeter(5)
-                    } else {
-                        setMeter(prev => prev + 5)
-                    }
+                    setMeter(prev => prev + 1)
                 }
             )
-            setDisId(result)
+            resultId = result
+            // dispatch(distActions.setWatchId(result))
         } catch (err) {
             console.log(err)
             throw err
@@ -62,13 +81,15 @@ export default function MapPage(props) {
     const stopRunning = () => {
         clearInterval(timeId)
         dispatch(timeActions.saveTime(sec, false))
+        dispatch(distActions.setDistance(meter, false))
         setIsRunnig(false)
     }
+
     const finishRunning = () => {
         clearInterval(timeId)
         dispatch(timeActions.saveTime(sec, true))
-        dispatch(distActions.setDistance(meter))
-        disId.remove()
+        dispatch(distActions.setDistance(meter, true))
+        resultId.remove()
         props.navigation.goBack()
     }
 
@@ -91,7 +112,7 @@ export default function MapPage(props) {
                             onPress={() => {
                                 startRunning()
                                 if (meter === 0) {
-                                    // watchPosition()
+                                    watchPosition()
                                 }
                             }}
                         />

@@ -19,7 +19,7 @@ export default props => {
             <View style={styles.bottomContent}>
                 <AttackContainer height={height * 0.32}>
                     <Attack>
-                        <AttackIcon width={30} height={30} fill="white" />
+                        <AttackIcon width={35} height={35} fill="white" />
                     </Attack>
                 </AttackContainer>
                 <AttackTextButton />
@@ -32,7 +32,7 @@ export default props => {
                 <Status image="red" title="지방지수" color={Colors.fatGauge} />
                 <RunButton
                     title="Run"
-                    style={{ alignSelf: 'center' }}
+                    style={{ alignSelf: 'center', elevation: 5 }}
                     onPress={() => {
                         props.navigation.navigate('Run')
                     }}
