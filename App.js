@@ -6,12 +6,14 @@ import ReduxThunk from 'redux-thunk'
 import CaloringNavigator from './navigation/CaloringNavigator'
 import timeReducer from './store/reducers/time'
 import locationReducer from './store/reducers/location'
-import distancdReducer from './store/reducers/distance'
+import distanceReducer from './store/reducers/distance'
+import userData from './store/reducers/userData'
 
 const rootReducer = combineReducers({
     time: timeReducer,
     location: locationReducer,
-    distance: distancdReducer,
+    distance: distanceReducer,
+    userData: userData,
 })
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk))

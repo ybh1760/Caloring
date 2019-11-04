@@ -5,7 +5,8 @@ import AttackContainer from '../../molecules/container/AttackContainer'
 import Attack from '../../molecules/button/circle/Attack'
 import RunButton from '../../molecules/button/circle/Press'
 import NickContainer from '../../molecules/container/NickContainer'
-import AttackIcon from '../../atoms/button/attackIcon.svg'
+// import AttackIcon from '../../atoms/button/attackIcon.svg'
+import AttackIcon from '../../atoms/button/AttackIcon'
 import Status from '../../molecules/container/StatusContainer'
 import AttackTextButton from '../../molecules/button/roundEdge/AttackButton'
 import Colors from '../../../constants/Colors'
@@ -19,7 +20,7 @@ export default props => {
             <View style={styles.bottomContent}>
                 <AttackContainer height={height * 0.32}>
                     <Attack>
-                        <AttackIcon width={35} height={35} fill="white" />
+                        <AttackIcon width={31} height={31} fill="white" />
                     </Attack>
                 </AttackContainer>
                 <AttackTextButton />

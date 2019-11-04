@@ -1,10 +1,10 @@
-import { SET_USER_DATA } from '../actions/userData'
+import { SET_USER_DATA, UPDATE_USER_DATA } from '../actions/userData'
 import UserData from '../../models/UserData'
 
 const initialState = {
     userData: {},
 }
-id, exercising, goal, caloring, fat
+
 export default (state = initialState, action) => {
     switch (action.type) {
         case SET_USER_DATA:
@@ -17,6 +17,13 @@ export default (state = initialState, action) => {
             )
             return {
                 userData: newUserData,
+            }
+        case UPDATE_USER_DATA:
+            return {
+                userData: {
+                    ...state.userData,
+                    [exercising]: action.exercising,
+                },
             }
         default:
             return state

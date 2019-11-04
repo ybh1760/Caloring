@@ -1,8 +1,10 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-import Grey from '../../atoms/Icon/grey.svg'
-import Red from '../../atoms/Icon/red.svg'
+// import Grey from '../../atoms/Icon/grey.svg'
+import Grey from '../../atoms/Icon/Grey'
+// import Red from '../../atoms/Icon/red.svg'
+import Red from '../../atoms/Icon/Red'
 
 export default props => {
     const { image, title } = props
