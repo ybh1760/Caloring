@@ -10,6 +10,7 @@ export default props => {
                 style={{
                     ...styles.content,
                     backgroundColor: props.color,
+                    width: props.gauge,
                 }}
             ></View>
         </View>

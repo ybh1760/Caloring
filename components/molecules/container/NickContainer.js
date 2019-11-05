@@ -6,7 +6,7 @@ const { width } = Dimensions.get('window')
 export default props => {
     return (
         <View style={styles.nickContainer}>
-            <Text>밍구</Text>
+            <Text>{props.nick}</Text>
         </View>
     )
 }

@@ -2,7 +2,6 @@ import { SET_DISTANCE, SET_WATCHID } from '../actions/distance'
 
 const initialState = {
     distance: [0],
-    disId: null,
 }
 
 export default (state = initialState, action) => {
@@ -10,7 +9,7 @@ export default (state = initialState, action) => {
         case SET_DISTANCE:
             if (action.isFinished) {
                 return {
-                    distance: state.distance.concat(action.distance),
+                    distance: state.distance.concat(action.distance, 0),
                 }
             } else {
                 const updatedDistance = state.distance
@@ -20,11 +19,6 @@ export default (state = initialState, action) => {
                     ...state,
                     distance: updatedDistance,
                 }
-            }
-        case SET_WATCHID:
-            return {
-                ...state,
-                disId: action.watchId,
             }
         default:
             return state

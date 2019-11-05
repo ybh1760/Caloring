@@ -45,21 +45,21 @@ export const setUser2Data = () => {
 export const updateUserData = userData => {
     return async dispatch => {
         try {
-            const response = await fetch(`url/caloring/${userData.id}`, {
-                method: 'PUT',
-                headers: { contentType: 'application/json' },
-                body: JSON.stringify({
-                    id: userData.id,
-                    name: userData.name,
-                    exercising: userData.exercising,
-                    goal: userData.goal,
-                    caloring: userData.caloring,
-                    fat: userData.fat,
-                }),
-            })
-            if (!response.ok) {
-                throw new Error('response에 문제가 있어요')
-            }
+            // const response = await fetch(`url/caloring/${userData.id}`, {
+            //     method: 'PUT',
+            //     headers: { contentType: 'application/json' },
+            //     body: JSON.stringify({
+            //         id: userData.id,
+            //         name: userData.name,
+            //         exercising: userData.exercising,
+            //         goal: userData.goal,
+            //         caloring: userData.caloring,
+            //         fat: userData.fat,
+            //     }),
+            // })
+            // if (!response.ok) {
+            //     throw new Error('response에 문제가 있어요')
+            // }
 
             dispatch({
                 type: UPDATE_USER_DATA,

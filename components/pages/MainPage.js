@@ -12,37 +12,39 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 import { useSelector } from 'react-redux'
 
 import HeaderButton from '../molecules/button/HeaderButton'
-import Bottom from '../organisms/main/Bottom'
+import Bottom from '../organisms/main/MainBottom'
 
 const { width, height } = Dimensions.get('window')
 
-export default function HomePage(props) {
+export default function MainPage(props) {
     const dist = useSelector(state => state.distance.distance[0])
 
     return (
-        <ImageBackground
-            source={
-                (src = require('../../assets/backgroundImg/mainBackground.png'))
-            }
-            style={styles.container}
-        >
-            <View style={styles.message}>
-                <Text>{dist}</Text>
-            </View>
-            <View style={styles.charactor}>
-                <Image
-                    source={
-                        (src = require('../../assets/CharactorImg/penguin_1.png'))
-                    }
-                    style={styles.image}
-                />
-            </View>
-            <Bottom navigation={props.navigation} />
-        </ImageBackground>
+        <View style={{ flex: 1 }}>
+            <ImageBackground
+                source={
+                    (src = require('../../assets/backgroundImg/mainBackground.png'))
+                }
+                style={styles.container}
+            >
+                <View style={styles.message}>
+                    <Text>{dist}</Text>
+                </View>
+                <View style={styles.charactor}>
+                    <Image
+                        source={
+                            (src = require('../../assets/CharactorImg/penguin_1.png'))
+                        }
+                        style={styles.image}
+                    />
+                </View>
+                <Bottom navigation={props.navigation} />
+            </ImageBackground>
+        </View>
     )
 }
 
-HomePage.navigationOptions = navData => {
+MainPage.navigationOptions = navData => {
     return {
         headerTitle: 'MY ROOM',
         headerLeft: (
@@ -82,8 +84,8 @@ HomePage.navigationOptions = navData => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
         justifyContent: 'flex-end',
+        alignItems: 'center',
     },
     charactor: {
         width: 150,

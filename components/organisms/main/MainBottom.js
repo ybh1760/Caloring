@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, StyleSheet, Dimensions, Text } from 'react-native'
+import { useSelector } from 'react-redux'
 
 import AttackContainer from '../../molecules/container/AttackContainer'
 import Attack from '../../molecules/button/circle/Attack'
@@ -14,9 +15,23 @@ import Colors from '../../../constants/Colors'
 const { width, height } = Dimensions.get('window')
 
 export default props => {
+    const userData = useSelector(state => state.userData.userData)
+
+    const gaugeTracker = () => {
+        switch (userData.fat) {
+            case 1:
+                return '33.33%'
+            case 2:
+                return '66.66%'
+            case 3:
+                return '100%'
+        }
+        return '0%'
+    }
+
     return (
         <View style={styles.bottom}>
-            <NickContainer />
+            <NickContainer nick={userData.name} />
             <View style={styles.bottomContent}>
                 <AttackContainer height={height * 0.32}>
                     <Attack>
@@ -29,8 +44,16 @@ export default props => {
                     image="grey"
                     title="칼로링포인트"
                     color={Colors.calGauge}
+                    score={userData.exercising}
+                    gauge="66.6%"
                 />
-                <Status image="red" title="지방지수" color={Colors.fatGauge} />
+                <Status
+                    image="red"
+                    title="지방지수"
+                    color={Colors.fatGauge}
+                    score={userData.fat}
+                    gauge={gaugeTracker()}
+                />
                 <RunButton
                     title="Run"
                     style={{ alignSelf: 'center', elevation: 5 }}

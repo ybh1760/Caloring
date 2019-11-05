@@ -7,16 +7,14 @@ import Grey from '../../atoms/Icon/Grey'
 import Red from '../../atoms/Icon/Red'
 
 export default props => {
-    const { image, title } = props
+    const { image, title, score } = props
 
     return (
         <View style={styles.container}>
-            {image === 'grey' ? (
-                <Grey width={20} height={20} />
-            ) : (
-                <Red width={20} height={20} />
-            )}
-            <Text style={styles.content}>{title} 000</Text>
+            {image === 'grey' ? <Grey /> : <Red />}
+            <Text style={styles.content}>
+                {title} {score}
+            </Text>
         </View>
     )
 }

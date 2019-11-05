@@ -8,8 +8,8 @@ export default props => {
     const { image, title, color } = props
     return (
         <View style={styles.status}>
-            <Label image={image} title={title} />
-            <Status color={color} />
+            <Label image={image} title={title} score={props.score} />
+            <Status color={color} gauge={props.gauge} />
         </View>
     )
 }

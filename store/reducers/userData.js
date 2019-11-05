@@ -23,7 +23,7 @@ export default (state = initialState, action) => {
             return {
                 userData: {
                     ...state.userData,
-                    [exercising]: action.exercising,
+                    userData: { exercising: action.exercising },
                 },
             }
         default:
