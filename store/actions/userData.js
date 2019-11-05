@@ -26,7 +26,7 @@ export const setUser1Data = () => {
 export const setUser2Data = () => {
     return async dispatch => {
         try {
-            const response = await fetch(`url/user/?id=2`)
+            const response = await fetch(`http://15.164.129.166:8080/user?id=2`)
             if (!response.ok) {
                 throw new Error('response에 문제가 있어요')
             }

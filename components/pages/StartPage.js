@@ -19,7 +19,7 @@ export default function StartPage(props) {
                 <Button
                     title="user2"
                     onPress={() => {
-                        dispatch(userActions.setUser2Data)
+                        dispatch(userActions.setUser2Data())
                         props.navigation.navigate('Drawer')
                     }}
                 />

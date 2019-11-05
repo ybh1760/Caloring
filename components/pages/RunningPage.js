@@ -4,12 +4,27 @@ import RunBottom from '../organisms/Running/RunBottom'
 
 export default function RunningPage(props) {
     return (
-        <ImageBackground style={styles.imageBackground} source={{ uri: null }}>
-            <View style={styles.imageContainer}>
-                <Image style={styles.image} source={{ uri: null }} />
-            </View>
-            <RunBottom navigation={props.navigation} />
-        </ImageBackground>
+        <View style={styles.screen}>
+            <ImageBackground
+                style={styles.imageBackground}
+                source={
+                    (src = require('../../assets/backgroundImg/runBackground.png'))
+                }
+            >
+                <View style={styles.content}>
+                    <View style={styles.imageContainer}>
+                        <Image
+                            style={styles.image}
+                            source={
+                                (src = require('../../assets/CharactorImg/pengRun.png'))
+                            }
+                        />
+                    </View>
+
+                    <RunBottom navigation={props.navigation} />
+                </View>
+            </ImageBackground>
+        </View>
     )
 }
 
@@ -18,7 +33,15 @@ RunningPage.navigationOptions = {
 }
 
 const styles = StyleSheet.create({
+    screen: { flex: 1 },
     imageBackground: { flex: 1 },
-    imageContainer: { width: '80%', height: '30%', alignSelf: 'center' },
+    content: {
+        height: '100%',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+    },
+    imageContainer: { width: 120, height: 160 },
     image: { width: '100%', height: '100%' },
 })
+
+//410x780

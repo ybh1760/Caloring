@@ -7,7 +7,9 @@ import * as Permissions from 'expo-permissions'
 import * as timeActions from '../../../store/actions/time'
 import * as distActions from '../../../store/actions/distance'
 import * as userDataActions from '../../../store/actions/userData'
-import NickContainer from '../../molecules/container/NickContainer'
+import Status from '../../molecules/container/StatusContainer'
+import Colors from '../../../constants/Colors'
+import IconButton from '../../molecules/button/icon/IconButton'
 
 let resultId
 const { width, height } = Dimensions.get('window')
@@ -98,58 +100,129 @@ export default function Bottom(props) {
         }
         props.navigation.goBack()
     }
+    const meterCheck =
+        meter > 100 ? (
+            <Text>00.{Math.floor(meter / 10)}</Text>
+        ) : (
+            <Text>00.0{Math.floor(meter / 10)}</Text>
+        )
+
+    const minTimer =
+        sec / 60 > 9 ? (
+            <Text>{`${Math.floor(sec / 60)}`}</Text>
+        ) : (
+            <Text>{`0${Math.floor(sec / 60)}`}</Text>
+        )
+
+    const secTimer =
+        sec % 60 > 9 ? (
+            <Text>{` : ${sec % 60}`}</Text>
+        ) : (
+            <Text>{` : 0${sec % 60}`}</Text>
+        )
 
     return (
-        <View style={styles.container}>
-            <View style={styles.timer}>
-                <Text>Distance:{meter}meters</Text>
-                <Text style={styles.timerText}>{`${Math.floor(
-                    sec / 60
-                )} : ${sec % 60}`}</Text>
-            </View>
-            <View style={styles.actions}>
-                {!isRunning ? (
-                    <Button
-                        title="시작"
-                        onPress={() => {
-                            startRunning()
-                            if (meter === 0) {
-                                watchPosition()
-                            }
-                        }}
+        <View style={styles.bottom}>
+            <View style={styles.container}>
+                <Status
+                    image="grey"
+                    title="칼로링포인트"
+                    color={Colors.calGauge}
+                    score={userData.exercising}
+                    gauge="66.6%"
+                />
+
+                <View
+                    style={{
+                        width: '100%',
+                        height: '35%',
+                    }}
+                >
+                    <View style={styles.layor}>
+                        <Text style={{ fontSize: 15 }}>DISTANCE</Text>
+                        <Text style={{ fontSize: 15 }}>TIME</Text>
+                    </View>
+                    <View style={styles.runData}>
+                        <Text style={styles.timerText}>{meterCheck}</Text>
+
+                        <Text style={styles.timerText}>
+                            {minTimer}
+                            {secTimer}
+                        </Text>
+                    </View>
+                </View>
+
+                <View style={styles.actions}>
+                    <IconButton
+                        name="md-square"
+                        onPress={finishRunning}
+                        color={Colors.iconButtonGrey}
                     />
-                ) : (
-                    <Button title="멈추기" onPress={stopRunning} />
-                )}
-                <Button title="종료" onPress={finishRunning} />
+                    {!isRunning ? (
+                        <IconButton
+                            name="md-arrow-dropright"
+                            onPress={() => {
+                                startRunning()
+                                if (meter === 0) {
+                                    watchPosition()
+                                }
+                            }}
+                            color={Colors.yellow}
+                        />
+                    ) : (
+                        <IconButton
+                            name="md-pause"
+                            onPress={stopRunning}
+                            color={Colors.yellow}
+                        />
+                    )}
+                </View>
             </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
+    bottom: {
+        width: width,
+        height: height * 0.39,
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+    },
     container: {
-        position: 'absolute',
-        bottom: 0,
-        alignSelf: 'center',
         borderTopLeftRadius: 15,
         borderTopRightRadius: 15,
         width: '90%',
         height: height * 0.32,
         backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
         elevation: 6,
+        paddingHorizontal: 20,
+        paddingTop: 15,
+    },
+    layor: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingRight: 50,
+        paddingLeft: 45,
+    },
+    runData: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingRight: 20,
+        paddingLeft: 40,
     },
     timer: {
         margin: 15,
     },
     timerText: {
-        fontSize: 15,
+        fontSize: 30,
     },
     actions: {
-        width: '80%',
+        width: '75%',
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        alignSelf: 'center',
+        justifyContent: 'space-between',
     },
 })

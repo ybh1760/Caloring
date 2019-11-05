@@ -8,4 +8,5 @@ export default {
     attackRed: '#d60404',
     drawerBlue: '#657BFF',
     itemBackColor: '#fcd21d',
+    iconButtonGrey: '#979797',
 }
