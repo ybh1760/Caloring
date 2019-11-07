@@ -9,7 +9,7 @@ export default props => {
     return (
         <View style={styles.status}>
             <Label image={image} title={title} score={props.score} />
-            <Status color={color} gauge={props.gauge} />
+            <Status color={color} gauge={props.gauge} status={props.status} />
         </View>
     )
 }

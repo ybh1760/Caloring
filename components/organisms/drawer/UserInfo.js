@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import StatusBar from '../../molecules/gauge/StatusBar'
 import Colors from '../../../constants/Colors'
 import DrawerActions from '../../molecules/button/DrawerActions'
+import gaugeTrack from '../../../functions/gaugeTrack'
 
 const { width, height } = Dimensions.get('window')
 
@@ -39,7 +40,11 @@ export default props => {
                         Level 10
                     </Text>
                     <View style={styles.statusContainer}>
-                        <StatusBar color={Colors.fatGauge} gauge="10%" />
+                        <StatusBar
+                            color={Colors.fatGauge}
+                            gauge={gaugeTrack(userData.fat)}
+                            status="fat"
+                        />
                     </View>
                 </View>
             </View>

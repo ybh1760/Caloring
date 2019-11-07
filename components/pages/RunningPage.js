@@ -1,8 +1,33 @@
-import React from 'react'
-import { StyleSheet, View, Image, ImageBackground } from 'react-native'
+import React, { useState, useCallback, useEffect } from 'react'
+import {
+    StyleSheet,
+    View,
+    Image,
+    ImageBackground,
+    Modal,
+    Dimensions,
+} from 'react-native'
 import RunBottom from '../organisms/Running/RunBottom'
 
+const { width, height } = Dimensions.get('window')
+
 export default function RunningPage(props) {
+    const [timeId, setTimeId] = useState(0)
+    const [isRunning, setIsrunning] = useState(false)
+    const [isFinished, setIsFinished] = useState(false)
+    const [motion, setMotion] = useState(true)
+
+    useEffect(() => {
+        if (isRunning) {
+            const time = setInterval(() => {
+                setMotion(prev => !prev)
+            }, 500)
+            setTimeId(time)
+        } else {
+            clearInterval(timeId)
+        }
+    }, [isRunning, setMotion])
+
     return (
         <View style={styles.screen}>
             <ImageBackground
@@ -13,15 +38,31 @@ export default function RunningPage(props) {
             >
                 <View style={styles.content}>
                     <View style={styles.imageContainer}>
-                        <Image
-                            style={styles.image}
-                            source={
-                                (src = require('../../assets/CharactorImg/pengRun.png'))
-                            }
-                        />
+                        {motion ? (
+                            <Image
+                                style={styles.image}
+                                source={
+                                    (src = require('../../assets/CharactorImg/runningMotion_1.png'))
+                                }
+                            />
+                        ) : (
+                            <Image
+                                style={styles.image}
+                                source={
+                                    (src = require('../../assets/CharactorImg/runningMotion_2.png'))
+                                }
+                            />
+                        )}
                     </View>
-
-                    <RunBottom navigation={props.navigation} />
+                    <RunBottom
+                        navigation={props.navigation}
+                        isRun={isRun => {
+                            setIsrunning(isRun)
+                        }}
+                        isFin={isFin => {
+                            setIsFinished(isFin)
+                        }}
+                    />
                 </View>
             </ImageBackground>
         </View>

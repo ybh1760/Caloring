@@ -23,9 +23,10 @@ export default (state = initialState, action) => {
             return {
                 userData: {
                     ...state.userData,
-                    userData: { exercising: action.exercising },
+                    exercising: action.exercising,
                 },
             }
+
         default:
             return state
     }

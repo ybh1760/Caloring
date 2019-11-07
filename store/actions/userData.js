@@ -1,8 +1,5 @@
-import * as Permissions from 'expo-permissions'
-
 export const SET_USER_DATA = 'SET_USER_DATA'
 export const UPDATE_USER_DATA = 'UPDATE_USER_DATA'
-export const ATTACK = 'ATTACK'
 
 export const setUser1Data = () => {
     return async dispatch => {
@@ -45,22 +42,24 @@ export const setUser2Data = () => {
 export const updateUserData = userData => {
     return async dispatch => {
         try {
-            // const response = await fetch(`url/caloring/${userData.id}`, {
-            //     method: 'PUT',
-            //     headers: { contentType: 'application/json' },
-            //     body: JSON.stringify({
-            //         id: userData.id,
-            //         name: userData.name,
-            //         exercising: userData.exercising,
-            //         goal: userData.goal,
-            //         caloring: userData.caloring,
-            //         fat: userData.fat,
-            //     }),
-            // })
-            // if (!response.ok) {
-            //     throw new Error('response에 문제가 있어요')
-            // }
-
+            const response = await fetch(
+                `http://15.164.129.166:8080/caloring/1`,
+                {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        id: userData.id,
+                        name: userData.name,
+                        exercising: 200,
+                        goal: userData.goal,
+                        caloring: userData.caloring,
+                        fat: userData.fat,
+                    }),
+                }
+            )
+            if (!response.ok) {
+                return new Error('responce error!')
+            }
             dispatch({
                 type: UPDATE_USER_DATA,
                 exercising: userData.exercising,
@@ -69,28 +68,5 @@ export const updateUserData = userData => {
             console.log(err.message)
             throw err
         }
-    }
-}
-
-export const attack = friendId => {
-    return async dispatch => {
-        try {
-            const response = await fetch(`url/user/${friendId}/attack`, {
-                method: 'PUT',
-                headers: { contentType: 'application/json' },
-                body: JSON.stringify({
-                    message: 'ok',
-                }),
-            })
-            if (!response.ok) {
-                throw new Error('attack이 안됨')
-            }
-            // response 처리 및  PUT  방식으로 공격할 때 request 보낼 데이터
-        } catch (err) {
-            console.log(err.message)
-            throw err
-        }
-
-        dispatch({ type: 'ATTACK' })
     }
 }

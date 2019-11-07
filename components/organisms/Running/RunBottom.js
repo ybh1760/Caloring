@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, Button, Dimensions } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import * as Location from 'expo-location'
@@ -10,6 +10,7 @@ import * as userDataActions from '../../../store/actions/userData'
 import Status from '../../molecules/container/StatusContainer'
 import Colors from '../../../constants/Colors'
 import IconButton from '../../molecules/button/icon/IconButton'
+import caloringTracker from '../../../functions/caloringTracker'
 
 let resultId
 const { width, height } = Dimensions.get('window')
@@ -36,6 +37,7 @@ export default function Bottom(props) {
 
     const startRunning = () => {
         setIsRunnig(true)
+        props.isRun(true)
         const time = setInterval(() => {
             setSec(prev => prev + 1)
         }, 1000)
@@ -81,9 +83,11 @@ export default function Bottom(props) {
         dispatch(distActions.setDistance(meter, false))
         if (userData.id !== undefined) {
             userData.exercising = Math.floor((meter / userData.goal) * 100)
+            console.log(userData)
             dispatch(userDataActions.updateUserData(userData))
         }
         setIsRunnig(false)
+        props.isRun(false)
     }
 
     const finishRunning = () => {
@@ -98,6 +102,8 @@ export default function Bottom(props) {
             userData.exercising = Math.floor((meter / userData.goal) * 100)
             dispatch(userDataActions.updateUserData(userData))
         }
+        props.isRun(false)
+        props.isFin(true)
         props.navigation.goBack()
     }
     const meterCheck =
@@ -129,7 +135,7 @@ export default function Bottom(props) {
                     title="칼로링포인트"
                     color={Colors.calGauge}
                     score={userData.exercising}
-                    gauge="66.6%"
+                    gauge={caloringTracker(userData.exercising)}
                 />
 
                 <View
@@ -203,15 +209,15 @@ const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingRight: 50,
+        paddingRight: 60,
         paddingLeft: 45,
     },
     runData: {
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingRight: 20,
-        paddingLeft: 40,
+        paddingRight: 30,
+        paddingLeft: 43,
     },
     timer: {
         margin: 15,

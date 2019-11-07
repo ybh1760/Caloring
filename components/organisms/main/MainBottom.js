@@ -1,32 +1,37 @@
 import React from 'react'
-import { View, StyleSheet, Dimensions, Text } from 'react-native'
+import { View, StyleSheet, Dimensions, Text, Alert } from 'react-native'
 import { useSelector } from 'react-redux'
 
 import AttackContainer from '../../molecules/container/AttackContainer'
 import Attack from '../../molecules/button/circle/Attack'
 import RunButton from '../../molecules/button/circle/Press'
 import NickContainer from '../../molecules/container/NickContainer'
-// import AttackIcon from '../../atoms/button/attackIcon.svg'
 import AttackIcon from '../../atoms/button/AttackIcon'
 import Status from '../../molecules/container/StatusContainer'
 import AttackTextButton from '../../molecules/button/roundEdge/AttackButton'
 import Colors from '../../../constants/Colors'
+import gaugeTracker from '../../../functions/gaugeTrack'
+import caloringTracker from '../../../functions/caloringTracker'
 
 const { width, height } = Dimensions.get('window')
 
 export default props => {
     const userData = useSelector(state => state.userData.userData)
 
-    const gaugeTracker = () => {
-        switch (userData.fat) {
-            case 1:
-                return '33.33%'
-            case 2:
-                return '66.66%'
-            case 3:
-                return '100%'
+    const attackHandler = async () => {
+        try {
+            const response = await fetch(
+                `http://15.164.129.166:8080/user/${userData.id}/attack`,
+                {
+                    method: 'PUT',
+                }
+            )
+            if (!response.ok) {
+                throw new Error('attack이 안됨')
+            }
+        } catch (err) {
+            throw new Error('attack request error')
         }
-        return '0%'
     }
 
     return (
@@ -34,25 +39,43 @@ export default props => {
             <NickContainer nick={userData.name} />
             <View style={styles.bottomContent}>
                 <AttackContainer height={height * 0.32}>
-                    <Attack>
+                    <Attack
+                        onPress={() => {
+                            attackHandler()
+                            Alert.alert(
+                                'ATTACK',
+                                '공격 되었습니다.'[{ text: '확인' }]
+                            )
+                        }}
+                    >
                         <AttackIcon width={31} height={31} fill="white" />
                     </Attack>
                 </AttackContainer>
                 <AttackTextButton />
-                <Text style={{ fontSize: 18, marginBottom: 5 }}>Level 10</Text>
+                <Text
+                    style={{
+                        fontSize: 18,
+                        marginBottom: 5,
+                        fontFamily: 'roboto-black',
+                    }}
+                >
+                    Level 10
+                </Text>
                 <Status
                     image="grey"
                     title="칼로링포인트"
                     color={Colors.calGauge}
                     score={userData.exercising}
-                    gauge="66.6%"
+                    status="Caloring"
+                    gauge={caloringTracker(userData.exercising)}
                 />
                 <Status
                     image="red"
                     title="지방지수"
                     color={Colors.fatGauge}
                     score={userData.fat}
-                    gauge={gaugeTracker()}
+                    gauge={gaugeTracker(userData.fat)}
+                    status="fat"
                 />
                 <RunButton
                     title="Run"
