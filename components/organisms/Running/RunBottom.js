@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, Button, Dimensions } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import * as Location from 'expo-location'
-import * as Permissions from 'expo-permissions'
 
 import * as timeActions from '../../../store/actions/time'
 import * as distActions from '../../../store/actions/distance'
@@ -11,14 +10,15 @@ import Status from '../../molecules/container/StatusContainer'
 import Colors from '../../../constants/Colors'
 import IconButton from '../../molecules/button/icon/IconButton'
 import caloringTracker from '../../../functions/caloringTracker'
-
+import { verifyLocationPermissions } from '../../../functions/verifyPermissions'
+import { minTimer, secTimer } from '../../atoms/timer/Timer'
 let resultId
 const { width, height } = Dimensions.get('window')
 
 export default function Bottom(props) {
     const [isRunning, setIsRunnig] = useState(false)
     const [timeId, setTimeId] = useState()
-    const userData = useSelector(state => state.userData.userData)
+    // const userData = useSelector(state => state.userData.userData)
 
     const savedTimeStamp = useSelector(state => state.time.timeStamp)
     const timeIndex = savedTimeStamp.length - 1
@@ -32,8 +32,11 @@ export default function Bottom(props) {
     const [sec, setSec] = useState(
         savedTimeStamp[timeIndex] ? savedTimeStamp[timeIndex].sec : 0
     )
-
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        return () => {}
+    }, [])
 
     const startRunning = () => {
         setIsRunnig(true)
@@ -44,25 +47,11 @@ export default function Bottom(props) {
         setTimeId(time)
     }
 
-    const verifyPermissions = async () => {
-        const result = await Permissions.askAsync(Permissions.LOCATION)
-        if (result.status !== 'granted') {
-            Alert.alert(
-                'Insuffient Permissions',
-                'you need to grant gps permission',
-                [{ text: 'Okay' }]
-            )
-            return false
-        }
-        return true
-    }
-
     const watchPosition = async () => {
-        const hasPermission = await verifyPermissions()
+        const hasPermission = await verifyLocationPermissions()
         if (!hasPermission) {
             throw new Error('permission이 없어!!!!!')
         }
-
         try {
             const result = await Location.watchPositionAsync(
                 { accuracy: 6, timeInterval: 10000, distanceInterval: 1 },
@@ -81,11 +70,11 @@ export default function Bottom(props) {
         clearInterval(timeId)
         dispatch(timeActions.saveTime(sec, false))
         dispatch(distActions.setDistance(meter, false))
-        if (userData.id !== undefined) {
-            userData.exercising = Math.floor((meter / userData.goal) * 100)
-            console.log(userData)
-            dispatch(userDataActions.updateUserData(userData))
-        }
+        // if (userData.id !== undefined) {
+        //     userData.exercising = Math.floor((meter / userData.goal) * 100)
+        //     console.log(userData)
+        //     dispatch(userDataActions.updateUserData(userData))
+        // }
         setIsRunnig(false)
         props.isRun(false)
     }
@@ -98,33 +87,20 @@ export default function Bottom(props) {
             resultId.remove()
         }
 
-        if (userData.id !== undefined) {
-            userData.exercising = Math.floor((meter / userData.goal) * 100)
-            dispatch(userDataActions.updateUserData(userData))
-        }
+        // if (userData.id !== undefined) {
+        //     userData.exercising = Math.floor((meter / userData.goal) * 100)
+        //     dispatch(userDataActions.updateUserData(userData))
+        // }
         props.isRun(false)
         props.isFin(true)
         props.navigation.goBack()
     }
+
     const meterCheck =
         meter > 100 ? (
             <Text>00.{Math.floor(meter / 10)}</Text>
         ) : (
             <Text>00.0{Math.floor(meter / 10)}</Text>
-        )
-
-    const minTimer =
-        sec / 60 > 9 ? (
-            <Text>{`${Math.floor(sec / 60)}`}</Text>
-        ) : (
-            <Text>{`0${Math.floor(sec / 60)}`}</Text>
-        )
-
-    const secTimer =
-        sec % 60 > 9 ? (
-            <Text>{` : ${sec % 60}`}</Text>
-        ) : (
-            <Text>{` : 0${sec % 60}`}</Text>
         )
 
     return (
@@ -134,16 +110,11 @@ export default function Bottom(props) {
                     image="grey"
                     title="칼로링포인트"
                     color={Colors.calGauge}
-                    score={userData.exercising}
-                    gauge={caloringTracker(userData.exercising)}
+                    // score={userData.exercising}
+                    // gauge={caloringTracker(userData.exercising)}
                 />
 
-                <View
-                    style={{
-                        width: '100%',
-                        height: '35%',
-                    }}
-                >
+                <View style={styles.runDataContainer}>
                     <View style={styles.layor}>
                         <Text style={{ fontSize: 15 }}>DISTANCE</Text>
                         <Text style={{ fontSize: 15 }}>TIME</Text>
@@ -152,8 +123,8 @@ export default function Bottom(props) {
                         <Text style={styles.timerText}>{meterCheck}</Text>
 
                         <Text style={styles.timerText}>
-                            {minTimer}
-                            {secTimer}
+                            {minTimer(sec)}
+                            {secTimer(sec)}
                         </Text>
                     </View>
                 </View>
@@ -204,6 +175,10 @@ const styles = StyleSheet.create({
         elevation: 6,
         paddingHorizontal: 20,
         paddingTop: 15,
+    },
+    runDataContainer: {
+        width: '100%',
+        height: '35%',
     },
     layor: {
         width: '100%',

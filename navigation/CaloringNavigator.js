@@ -9,7 +9,6 @@ import RunningPage from '../components/pages/RunningPage'
 import StartPage from '../components/pages/StartPage'
 import FriendsPage from '../components/pages/FriendsPage'
 import Colors from '../constants/Colors'
-import DataFetchCheck from '../components/pages/DataFetchCheck'
 import DrawerPage from '../components/pages/DrawerPage'
 
 const { height } = Dimensions.get('window')
@@ -44,9 +43,8 @@ const DrawerNavigator = createDrawerNavigator(
 )
 
 const MainNavigator = createSwitchNavigator({
-    Start: StartPage,
     Drawer: DrawerNavigator,
-    Test: DataFetchCheck,
+    Start: StartPage,
 })
 
 export default createAppContainer(MainNavigator)

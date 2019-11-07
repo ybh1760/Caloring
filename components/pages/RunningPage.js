@@ -6,6 +6,8 @@ import {
     ImageBackground,
     Modal,
     Dimensions,
+    Button,
+    Alert,
 } from 'react-native'
 import RunBottom from '../organisms/Running/RunBottom'
 
@@ -18,6 +20,7 @@ export default function RunningPage(props) {
     const [motion, setMotion] = useState(true)
 
     useEffect(() => {
+        props.navigation.setParams({ isRun: isRunning })
         if (isRunning) {
             const time = setInterval(() => {
                 setMotion(prev => !prev)
@@ -69,8 +72,26 @@ export default function RunningPage(props) {
     )
 }
 
-RunningPage.navigationOptions = {
-    headerTitle: '운동중',
+RunningPage.navigationOptions = navData => {
+    const isRunning = navData.navigation.getParam('isRun')
+
+    return {
+        headerTitle: '운동중',
+        headerLeft: () => (
+            <Button
+                title="back"
+                onPress={() => {
+                    if (!isRunning) {
+                        navData.navigation.goBack()
+                    } else {
+                        Alert.alert('경고', '운동을 멈춘 후에 뒤로 가주세요!', [
+                            { text: 'Okay' },
+                        ])
+                    }
+                }}
+            />
+        ),
+    }
 }
 
 const styles = StyleSheet.create({
