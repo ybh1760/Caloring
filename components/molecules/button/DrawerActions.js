@@ -1,9 +1,8 @@
 import React from 'react'
 import { View, StyleSheet, Dimensions } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
 
 import IconButton from '../../molecules/button/icon/Icon'
-import Right from '../../atoms/button/Right'
+import Right from '../../atoms/button/DrawerRight'
 import Round from '../../../components/atoms/roundEdge/Round'
 
 const { width } = Dimensions.get('window')

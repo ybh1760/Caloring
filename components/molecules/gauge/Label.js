@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 
 import RegularText from '../../atoms/text/regular/Text'
 import Grey from '../../atoms/Icon/Grey'
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         height: 20,
-        marginBottom: 5,
+        marginBottom: 10,
         alignItems: 'center',
     },
     content: { fontSize: 13, marginLeft: 5 },

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import { StyleSheet, Text, View, Button, Dimensions } from 'react-native'
+import React, { useState } from 'react'
+import { StyleSheet, View, Dimensions } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import * as Location from 'expo-location'
 
@@ -8,12 +8,13 @@ import * as distActions from '../../../store/actions/distance'
 import * as userDataActions from '../../../store/actions/userData'
 import Status from '../../molecules/container/StatusContainer'
 import Colors from '../../../constants/Colors'
-import IconButton from '../../molecules/button/icon/IconButton'
+import IconButton from '../../molecules/button/icon/IconCircle'
 import caloringTracker from '../../../functions/caloringTracker'
 import { verifyLocationPermissions } from '../../../functions/verifyPermissions'
-import { minTimer, secTimer } from '../../atoms/timer/Timer'
-import meterCheck from '../../atoms/displayMeter/Meters'
 import DisplayDatas from '../DisplayDatas'
+import StartRun from '../../atoms/button/StartRun'
+import PauseRun from '../../atoms/button/PauseRun'
+import StopRun from '../../atoms/button/StopRun'
 
 let resultId
 const { width, height } = Dimensions.get('window')
@@ -53,9 +54,9 @@ export default function Bottom(props) {
         }
         try {
             const result = await Location.watchPositionAsync(
-                { accuracy: 6, timeInterval: 10000, distanceInterval: 1 },
+                { timeInterval: 10000, distanceInterval: 10 },
                 position => {
-                    setMeter(prev => prev + 1)
+                    setMeter(prev => prev + 10)
                 }
             )
             resultId = result
@@ -108,20 +109,20 @@ export default function Bottom(props) {
 
                 <DisplayDatas
                     layerSize={15}
-                    dataSize={25}
+                    dataSize={35}
                     meter={meter}
                     sec={sec}
                 />
 
                 <View style={styles.actions}>
                     <IconButton
-                        name="md-square"
                         onPress={finishRunning}
                         color={Colors.iconButtonGrey}
-                    />
+                    >
+                        <StopRun width={28} height={28} fill="white" />
+                    </IconButton>
                     {!isRunning ? (
                         <IconButton
-                            name="md-arrow-dropright"
                             onPress={() => {
                                 startRunning()
                                 if (meter === 0) {
@@ -129,13 +130,13 @@ export default function Bottom(props) {
                                 }
                             }}
                             color={Colors.yellow}
-                        />
+                        >
+                            <StartRun width={28} height={28} fill="white" />
+                        </IconButton>
                     ) : (
-                        <IconButton
-                            name="md-pause"
-                            onPress={stopRunning}
-                            color={Colors.yellow}
-                        />
+                        <IconButton onPress={stopRunning} color={Colors.yellow}>
+                            <PauseRun width={28} height={28} fill="white" />
+                        </IconButton>
                     )}
                 </View>
             </View>
@@ -161,9 +162,10 @@ const styles = StyleSheet.create({
         paddingTop: 15,
     },
     actions: {
-        width: '75%',
+        width: '65%',
         flexDirection: 'row',
         alignSelf: 'center',
         justifyContent: 'space-between',
+        marginTop: 10,
     },
 })

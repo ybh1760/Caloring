@@ -3,7 +3,7 @@ import Svg, { Path } from 'react-native-svg'
 
 const SvgComponent = props => (
     <Svg viewBox="0 0 357 357" {...props}>
-        <Path d="M38.25 0v357l280.5-178.5z" />
+        <Path d="M25.5 357h102V0h-102v357zm204-357v357h102V0h-102z" />
     </Svg>
 )
 

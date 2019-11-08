@@ -1,8 +1,5 @@
 import React from 'react'
 import { View, StyleSheet, TouchableNativeFeedback } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
-
-import Colors from '../../../../constants/Colors'
 
 export default props => {
     return (
@@ -11,11 +8,7 @@ export default props => {
                 <View
                     style={{ ...styles.circle, backgroundColor: props.color }}
                 >
-                    <Ionicons
-                        name={props.name}
-                        size={props.name === 'md-arrow-dropright' ? 50 : 30}
-                        color="white"
-                    />
+                    {props.children}
                 </View>
             </TouchableNativeFeedback>
         </View>
