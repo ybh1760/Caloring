@@ -23,7 +23,7 @@
         "android": {
             "config": {
                 "googleMaps": {
-                    "apiKey": "process.env.GoogleApiKey"
+                    "apiKey": ""
                 }
             },
             "permissions": ["android.permission.INTERNET"]

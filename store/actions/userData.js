@@ -1,4 +1,4 @@
-require('dotenv/config')
+import data from '../../secure.config'
 
 export const SET_USER_DATA = 'SET_USER_DATA'
 export const UPDATE_USER_DATA = 'UPDATE_USER_DATA'
@@ -6,7 +6,7 @@ export const UPDATE_USER_DATA = 'UPDATE_USER_DATA'
 export const setUser1Data = () => {
     return async dispatch => {
         try {
-            const response = await fetch(`${process.env.AwsUrl}/user?id=1`)
+            const response = await fetch(`${data.AwsUrl}/user?id=1`)
             if (!response.ok) {
                 throw new Error('response에 문제가 있어요')
             }
@@ -25,7 +25,7 @@ export const setUser1Data = () => {
 export const setUser2Data = () => {
     return async dispatch => {
         try {
-            const response = await fetch(`${process.env.AwsUrl}/user?id=2`)
+            const response = await fetch(`${data.AwsUrl}/user?id=2`)
             if (!response.ok) {
                 throw new Error('response에 문제가 있어요')
             }
@@ -44,7 +44,7 @@ export const setUser2Data = () => {
 export const updateUserData = userData => {
     return async dispatch => {
         try {
-            const response = await fetch(`${process.env.AwsUrl}/caloring/1`, {
+            const response = await fetch(`${data.AwsUrl}/caloring/1`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

@@ -10,6 +10,7 @@ import StartPage from '../components/pages/StartPage'
 import FriendsPage from '../components/pages/FriendsPage'
 import Colors from '../constants/Colors'
 import DrawerPage from '../components/pages/DrawerPage'
+import ResultPage from '../components/pages/ResultPage'
 
 const { height } = Dimensions.get('window')
 
@@ -24,6 +25,7 @@ const CharactorNavigator = createStackNavigator(
         Home: HomePage,
         Run: RunningPage,
         Friends: FriendsPage,
+        Result: ResultPage,
     },
     {
         defaultNavigationOptions: defaultNavOptions,

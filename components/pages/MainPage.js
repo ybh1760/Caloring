@@ -4,57 +4,21 @@ import {
     Alert,
     ImageBackground,
     Dimensions,
-    Image,
     View,
-    Text,
 } from 'react-native'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 import { useSelector } from 'react-redux'
 
 import HeaderButton from '../molecules/button/HeaderButton'
 import Bottom from '../organisms/main/MainBottom'
+import imageHandler from '../../functions/imageHandler'
+import HeaderTitle from '../atoms/headerTitle/HeaderTitle'
+import styled from 'styled-components'
 
 const { width, height } = Dimensions.get('window')
 
 export default function MainPage(props) {
     const userData = useSelector(state => state.userData.userData)
-
-    const imgHandler = () => {
-        if (userData.fat === 1) {
-            return (
-                <View style={styles.charactor1}>
-                    <Image
-                        source={
-                            (src = require('../../assets/CharactorImg/main1.png'))
-                        }
-                        style={styles.image}
-                    />
-                </View>
-            )
-        } else if (userData.fat === 2) {
-            return (
-                <View style={styles.charactor2}>
-                    <Image
-                        source={
-                            (src = require('../../assets/CharactorImg/main2.png'))
-                        }
-                        style={styles.image}
-                    />
-                </View>
-            )
-        } else {
-            return (
-                <View style={styles.charactor3}>
-                    <Image
-                        source={
-                            (src = require('../../assets/CharactorImg/main3.png'))
-                        }
-                        style={styles.image}
-                    />
-                </View>
-            )
-        }
-    }
 
     return (
         <View style={{ flex: 1 }}>
@@ -64,8 +28,29 @@ export default function MainPage(props) {
                 }
                 style={styles.container}
             >
-                <View style={styles.message}></View>
-                {imgHandler()}
+                <View
+                    style={{
+                        marginBottom: 60,
+                    }}
+                >
+                    <View style={styles.message}></View>
+                    <View
+                        style={{
+                            width: 0,
+                            height: 0,
+                            position: 'absolute',
+                            right: 30,
+                            bottom: -30,
+                            borderTopColor: 'white',
+                            borderRightColor: 'transparent',
+                            borderLeftColor: 'transparent',
+                            borderTopWidth: 30,
+                            borderRightWidth: 20,
+                            borderLeftWidth: 20,
+                        }}
+                    />
+                </View>
+                {imageHandler(userData.fat)}
                 <Bottom navigation={props.navigation} />
             </ImageBackground>
         </View>
@@ -74,7 +59,7 @@ export default function MainPage(props) {
 
 MainPage.navigationOptions = navData => {
     return {
-        headerTitle: <Text>My Home</Text>,
+        headerTitle: <HeaderTitle title="MY ROOM" />,
         headerLeft: (
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <Item
@@ -115,28 +100,11 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
-    charactor1: {
-        width: 150,
-        height: 165,
-    },
-    charactor2: {
-        width: 170,
-        height: 180,
-    },
-    charactor3: {
-        width: 200,
-        height: 200,
-    },
-    image: {
-        width: '100%',
-        height: '100%',
-    },
     message: {
         width: 150,
         height: 80,
         borderRadius: 10,
         backgroundColor: 'white',
-        elevation: 3,
-        marginBottom: 60,
+        elevation: 5,
     },
 })

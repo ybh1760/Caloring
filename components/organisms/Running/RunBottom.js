@@ -93,7 +93,7 @@ export default function Bottom(props) {
         // }
         props.isRun(false)
         props.isFin(true)
-        props.navigation.goBack()
+        props.navigation.navigate('Result')
     }
 
     const meterCheck =

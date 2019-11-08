@@ -10,6 +10,8 @@ import {
     Alert,
 } from 'react-native'
 import RunBottom from '../organisms/Running/RunBottom'
+import IconButton from '../molecules/button/icon/Icon'
+import LeftArrow from '../atoms/button/LeftArrow'
 
 const { width, height } = Dimensions.get('window')
 
@@ -78,8 +80,7 @@ RunningPage.navigationOptions = navData => {
     return {
         headerTitle: '운동중',
         headerLeft: () => (
-            <Button
-                title="back"
+            <IconButton
                 onPress={() => {
                     if (!isRunning) {
                         navData.navigation.goBack()
@@ -89,7 +90,9 @@ RunningPage.navigationOptions = navData => {
                         ])
                     }
                 }}
-            />
+            >
+                <LeftArrow width={23} height={23} fill="black" />
+            </IconButton>
         ),
     }
 }
