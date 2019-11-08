@@ -2,6 +2,8 @@ import React from 'react'
 import { View, StyleSheet, Dimensions } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
+import IconButton from '../../molecules/button/icon/Icon'
+import Right from '../../atoms/button/Right'
 import Round from '../../../components/atoms/roundEdge/Round'
 
 const { width } = Dimensions.get('window')
@@ -14,10 +16,14 @@ export default props => {
                 style={{
                     backgroundColor: props.color,
                     width: width * 0.2,
+                    paddingVertical: 3,
                 }}
                 color={props.textColor}
+                onPress={props.onPress}
             />
-            <Ionicons name="md-arrow-dropright" color={props.color} size={30} />
+            <IconButton onPress={props.onPress}>
+                <Right width={18} height={18} fill={props.color} />
+            </IconButton>
         </View>
     )
 }

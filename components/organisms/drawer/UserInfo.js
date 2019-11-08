@@ -48,7 +48,13 @@ export default props => {
                     </View>
                 </View>
             </View>
-            <DrawerActions content="프로필" color="white" />
+            <DrawerActions
+                content="프로필"
+                color="white"
+                onPress={() => {
+                    props.navigation.navigate('Main')
+                }}
+            />
         </View>
     )
 }

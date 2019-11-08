@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { StyleSheet, Text, View, Button, Dimensions } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import * as Location from 'expo-location'
@@ -12,6 +12,9 @@ import IconButton from '../../molecules/button/icon/IconButton'
 import caloringTracker from '../../../functions/caloringTracker'
 import { verifyLocationPermissions } from '../../../functions/verifyPermissions'
 import { minTimer, secTimer } from '../../atoms/timer/Timer'
+import meterCheck from '../../atoms/displayMeter/Meters'
+import DisplayDatas from '../DisplayDatas'
+
 let resultId
 const { width, height } = Dimensions.get('window')
 
@@ -33,10 +36,6 @@ export default function Bottom(props) {
         savedTimeStamp[timeIndex] ? savedTimeStamp[timeIndex].sec : 0
     )
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        return () => {}
-    }, [])
 
     const startRunning = () => {
         setIsRunnig(true)
@@ -66,10 +65,10 @@ export default function Bottom(props) {
         }
     }
 
-    const stopRunning = () => {
+    const stopRunning = async () => {
         clearInterval(timeId)
-        dispatch(timeActions.saveTime(sec, false))
-        dispatch(distActions.setDistance(meter, false))
+        await dispatch(timeActions.saveTime(sec, false))
+        await dispatch(distActions.setDistance(meter, false))
         // if (userData.id !== undefined) {
         //     userData.exercising = Math.floor((meter / userData.goal) * 100)
         //     console.log(userData)
@@ -79,10 +78,10 @@ export default function Bottom(props) {
         props.isRun(false)
     }
 
-    const finishRunning = () => {
+    const finishRunning = async () => {
         clearInterval(timeId)
-        dispatch(timeActions.saveTime(sec, true))
-        dispatch(distActions.setDistance(meter, true))
+        await dispatch(timeActions.saveTime(sec, true))
+        await dispatch(distActions.setDistance(meter, true))
         if (resultId) {
             resultId.remove()
         }
@@ -91,17 +90,10 @@ export default function Bottom(props) {
         //     userData.exercising = Math.floor((meter / userData.goal) * 100)
         //     dispatch(userDataActions.updateUserData(userData))
         // }
+        setIsRunnig(false)
         props.isRun(false)
-        props.isFin(true)
         props.navigation.navigate('Result')
     }
-
-    const meterCheck =
-        meter > 100 ? (
-            <Text>00.{Math.floor(meter / 10)}</Text>
-        ) : (
-            <Text>00.0{Math.floor(meter / 10)}</Text>
-        )
 
     return (
         <View style={styles.bottom}>
@@ -114,20 +106,12 @@ export default function Bottom(props) {
                     // gauge={caloringTracker(userData.exercising)}
                 />
 
-                <View style={styles.runDataContainer}>
-                    <View style={styles.layor}>
-                        <Text style={{ fontSize: 15 }}>DISTANCE</Text>
-                        <Text style={{ fontSize: 15 }}>TIME</Text>
-                    </View>
-                    <View style={styles.runData}>
-                        <Text style={styles.timerText}>{meterCheck}</Text>
-
-                        <Text style={styles.timerText}>
-                            {minTimer(sec)}
-                            {secTimer(sec)}
-                        </Text>
-                    </View>
-                </View>
+                <DisplayDatas
+                    layerSize={15}
+                    dataSize={25}
+                    meter={meter}
+                    sec={sec}
+                />
 
                 <View style={styles.actions}>
                     <IconButton
@@ -175,30 +159,6 @@ const styles = StyleSheet.create({
         elevation: 6,
         paddingHorizontal: 20,
         paddingTop: 15,
-    },
-    runDataContainer: {
-        width: '100%',
-        height: '35%',
-    },
-    layor: {
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingRight: 60,
-        paddingLeft: 45,
-    },
-    runData: {
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingRight: 30,
-        paddingLeft: 43,
-    },
-    timer: {
-        margin: 15,
-    },
-    timerText: {
-        fontSize: 30,
     },
     actions: {
         width: '75%',

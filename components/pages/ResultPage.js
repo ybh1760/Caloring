@@ -6,7 +6,8 @@ import {
     Dimensions,
     StatusBar,
 } from 'react-native'
-import { AuthSession } from 'expo'
+
+import MainResult from '../organisms/result/MainResult'
 
 const { width, height } = Dimensions.get('window')
 
@@ -19,16 +20,14 @@ export default function ResultPage(props) {
                     (src = require('../../assets/backgroundImg/runBackground.png'))
                 }
             >
-                <View style={styles.resultContainer}></View>
+                <MainResult navigation={props.navigation} />
             </ImageBackground>
         </View>
     )
 }
 
-ResultPage.navigationOptions = navData => {
-    return {
-        headerShown: false,
-    }
+ResultPage.navigationOptions = {
+    headerShown: false,
 }
 
 const styles = StyleSheet.create({
@@ -37,12 +36,5 @@ const styles = StyleSheet.create({
         height: height,
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    resultContainer: {
-        width: width * 0.95,
-        height: height * 0.98,
-        backgroundColor: 'white',
-        borderRadius: 10,
-        elevation: 2,
     },
 })

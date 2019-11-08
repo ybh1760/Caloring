@@ -1,24 +1,25 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     StyleSheet,
     View,
-    Image,
     ImageBackground,
-    Modal,
     Dimensions,
-    Button,
     Alert,
 } from 'react-native'
+import { HeaderButtons, Item } from 'react-navigation-header-buttons'
+
+import HeaderButton from '../molecules/button/HeaderButton'
 import RunBottom from '../organisms/Running/RunBottom'
 import IconButton from '../molecules/button/icon/Icon'
 import LeftArrow from '../atoms/button/LeftArrow'
+import runImageHandler from '../../functions/runImageHandler'
+import HeaderTitle from '../atoms/headerTitle/HeaderTitle'
 
 const { width, height } = Dimensions.get('window')
 
 export default function RunningPage(props) {
     const [timeId, setTimeId] = useState(0)
     const [isRunning, setIsrunning] = useState(false)
-    const [isFinished, setIsFinished] = useState(false)
     const [motion, setMotion] = useState(true)
 
     useEffect(() => {
@@ -43,29 +44,12 @@ export default function RunningPage(props) {
             >
                 <View style={styles.content}>
                     <View style={styles.imageContainer}>
-                        {motion ? (
-                            <Image
-                                style={styles.image}
-                                source={
-                                    (src = require('../../assets/CharactorImg/runningMotion_1.png'))
-                                }
-                            />
-                        ) : (
-                            <Image
-                                style={styles.image}
-                                source={
-                                    (src = require('../../assets/CharactorImg/runningMotion_2.png'))
-                                }
-                            />
-                        )}
+                        {runImageHandler(motion)}
                     </View>
                     <RunBottom
                         navigation={props.navigation}
                         isRun={isRun => {
                             setIsrunning(isRun)
-                        }}
-                        isFin={isFin => {
-                            setIsFinished(isFin)
                         }}
                     />
                 </View>
@@ -78,7 +62,7 @@ RunningPage.navigationOptions = navData => {
     const isRunning = navData.navigation.getParam('isRun')
 
     return {
-        headerTitle: '운동중',
+        headerTitle: <HeaderTitle title="RUNNING" />,
         headerLeft: () => (
             <IconButton
                 onPress={() => {
@@ -91,8 +75,28 @@ RunningPage.navigationOptions = navData => {
                     }
                 }}
             >
-                <LeftArrow width={23} height={23} fill="black" />
+                <LeftArrow width={18} height={18} fill="black" />
             </IconButton>
+        ),
+        headerRight: (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item
+                    title="notice"
+                    iconName="md-notifications"
+                    onPress={() => {
+                        Alert.alert('알림', '아직 구현하지 않았습니다.', [
+                            { text: 'Okay' },
+                        ])
+                    }}
+                />
+                <Item
+                    title="friends"
+                    iconName="md-people"
+                    onPress={() => {
+                        navData.navigation.navigate('Friends')
+                    }}
+                />
+            </HeaderButtons>
         ),
     }
 }
@@ -106,7 +110,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     imageContainer: { width: 120, height: 160 },
-    image: { width: '100%', height: '100%' },
 })
 
 //410x780

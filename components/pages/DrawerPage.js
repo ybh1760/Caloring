@@ -22,14 +22,14 @@ export default props => {
                     backgroundColor: Colors.drawerBlue,
                 }}
             >
-                <UserInfo />
+                <UserInfo navigation={props.navigation} />
             </View>
             <View
                 style={{
                     height: height * 0.3,
                 }}
             >
-                <UserItem />
+                <UserItem navigation={props.navigation} />
             </View>
             <View
                 style={{
@@ -40,7 +40,7 @@ export default props => {
                 }}
             />
             <View style={{ height: height * 0.4 }}>
-                <UserData />
+                <UserData navigation={props.navigation} />
             </View>
         </View>
     )

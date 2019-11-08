@@ -10,7 +10,7 @@ export const minTimer = sec =>
 
 export const secTimer = sec =>
     sec % 60 > 9 ? (
-        <Text>{` : ${sec % 60}`}</Text>
+        <Text>{`:${sec % 60}`}</Text>
     ) : (
-        <Text>{` : 0${sec % 60}`}</Text>
+        <Text>{`:0${sec % 60}`}</Text>
     )

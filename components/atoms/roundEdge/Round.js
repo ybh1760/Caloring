@@ -1,11 +1,18 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+
+import RegularText from '../text/regular/Text'
 
 export default props => {
     return (
-        <View style={{ ...props.style, ...styles.round }}>
-            <Text style={{ color: props.color }}>{props.content}</Text>
-        </View>
+        <TouchableOpacity
+            style={{ ...props.style, ...styles.round }}
+            onPress={props.onPress}
+        >
+            <RegularText style={{ color: props.color }}>
+                {props.content}
+            </RegularText>
+        </TouchableOpacity>
     )
 }
 

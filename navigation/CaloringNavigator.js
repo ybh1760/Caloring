@@ -4,7 +4,7 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import { createDrawerNavigator } from 'react-navigation-drawer'
 
-import HomePage from '../components/pages/MainPage'
+import MainPage from '../components/pages/MainPage'
 import RunningPage from '../components/pages/RunningPage'
 import StartPage from '../components/pages/StartPage'
 import FriendsPage from '../components/pages/FriendsPage'
@@ -22,7 +22,7 @@ const defaultNavOptions = {
 
 const CharactorNavigator = createStackNavigator(
     {
-        Home: HomePage,
+        Main: MainPage,
         Run: RunningPage,
         Friends: FriendsPage,
         Result: ResultPage,
