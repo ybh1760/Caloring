@@ -1,9 +1,8 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-// import Grey from '../../atoms/Icon/grey.svg'
+import RegularText from '../../atoms/text/regular/Text'
 import Grey from '../../atoms/Icon/Grey'
-// import Red from '../../atoms/Icon/red.svg'
 import Red from '../../atoms/Icon/Red'
 
 export default props => {
@@ -11,10 +10,14 @@ export default props => {
 
     return (
         <View style={styles.container}>
-            {image === 'grey' ? <Grey /> : <Red />}
-            <Text style={styles.content}>
+            {image === 'grey' ? (
+                <Grey width={20} height={20} />
+            ) : (
+                <Red width={20} height={20} />
+            )}
+            <RegularText style={styles.content}>
                 {title} {score}
-            </Text>
+            </RegularText>
         </View>
     )
 }

@@ -18,9 +18,9 @@ export default props => {
 
 const styles = StyleSheet.create({
     circle: {
-        width: 60,
-        height: 60,
-        borderRadius: 30,
+        width: 64,
+        height: 64,
+        borderRadius: 32,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: Colors.attackRed,

@@ -12,27 +12,13 @@ import AttackTextButton from '../../molecules/button/roundEdge/AttackButton'
 import Colors from '../../../constants/Colors'
 import gaugeTracker from '../../../functions/gaugeTrack'
 import caloringTracker from '../../../functions/caloringTracker'
+import attackHandler from '../../../functions/attackHandler'
+import BlackText from '../../atoms/text/black/Text'
 
 const { width, height } = Dimensions.get('window')
 
 export default props => {
     const userData = useSelector(state => state.userData.userData)
-
-    const attackHandler = async () => {
-        try {
-            const response = await fetch(
-                `http://15.164.129.166:8080/user/${userData.id}/attack`,
-                {
-                    method: 'PUT',
-                }
-            )
-            if (!response.ok) {
-                throw new Error('attack이 안됨')
-            }
-        } catch (err) {
-            throw new Error('attack request error')
-        }
-    }
 
     return (
         <View style={styles.bottom}>
@@ -41,26 +27,31 @@ export default props => {
                 <AttackContainer height={height * 0.32}>
                     <Attack
                         onPress={() => {
-                            attackHandler()
-                            Alert.alert(
-                                'ATTACK',
-                                '공격 되었습니다.'[{ text: '확인' }]
-                            )
+                            // attackHandler()
+                            Alert.alert('ATTACK', '공격 되었습니다.', [
+                                { text: '확인' },
+                            ])
                         }}
                     >
-                        <AttackIcon width={31} height={31} fill="white" />
+                        <AttackIcon width={35} height={35} />
                     </Attack>
                 </AttackContainer>
-                <AttackTextButton />
-                <Text
+                <AttackTextButton
+                    onPress={() => {
+                        // attackHandler()
+                        Alert.alert('ATTACK', '공격 되었습니다.', [
+                            { text: '확인' },
+                        ])
+                    }}
+                />
+                <BlackText
                     style={{
                         fontSize: 18,
                         marginBottom: 5,
-                        fontFamily: 'roboto-black',
                     }}
                 >
                     Level 10
-                </Text>
+                </BlackText>
                 <Status
                     image="grey"
                     title="칼로링포인트"
