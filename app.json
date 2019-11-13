@@ -26,7 +26,10 @@
                     "apiKey": ""
                 }
             },
-            "permissions": ["android.permission.INTERNET"]
+            "permissions": [
+                "android.permission.INTERNET",
+                "android.permission.VIBRATE"
+            ]
         },
         "packagerOpts": {
             "config": "metro.config.js",

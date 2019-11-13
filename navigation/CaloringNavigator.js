@@ -12,7 +12,7 @@ import Colors from '../constants/Colors'
 import DrawerPage from '../components/pages/DrawerPage'
 import ResultPage from '../components/pages/ResultPage'
 
-const { height } = Dimensions.get('window')
+const { width } = Dimensions.get('window')
 
 const defaultNavOptions = {
     headerStyle: {
@@ -37,6 +37,7 @@ const DrawerNavigator = createDrawerNavigator(
         Charactor: CharactorNavigator,
     },
     {
+        drawerWidth: width * 0.85,
         contentOptions: { activeTintColor: 'red' },
         contentComponent: props => {
             return <DrawerPage navigation={props.navigation} />

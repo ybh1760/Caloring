@@ -17,7 +17,7 @@ export default props => {
         }
     }
     return (
-        <View style={styles.background}>
+        <View style={{ ...styles.background, ...props.style }}>
             <View
                 style={{
                     ...styles.content,

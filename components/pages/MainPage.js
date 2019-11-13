@@ -1,59 +1,35 @@
 import React from 'react'
-import {
-    StyleSheet,
-    Alert,
-    ImageBackground,
-    Dimensions,
-    View,
-} from 'react-native'
+import { Alert } from 'react-native'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 import { useSelector } from 'react-redux'
-
-import HeaderButton from '../molecules/button/HeaderButton'
-import Bottom from '../organisms/main/MainBottom'
-import imageHandler from '../../functions/imageHandler'
-import HeaderTitle from '../atoms/headerTitle/HeaderTitle'
 import styled from 'styled-components'
 
-const { width, height } = Dimensions.get('window')
+import HeaderTitle from '../atoms/headerTitle/HeaderTitle'
+import HeaderButton from '../molecules/button/HeaderButton'
+import imageHandler from '../../functions/imageHandler'
+import Bottom from '../organisms/main/MainBottom'
+import Message from '../molecules/message/Message'
 
 export default function MainPage(props) {
     const userData = useSelector(state => state.userData.userData)
 
     return (
-        <View style={{ flex: 1 }}>
-            <ImageBackground
+        <Wrapper>
+            <Background
                 source={
                     (src = require('../../assets/backgroundImg/mainBackground.png'))
                 }
-                style={styles.container}
             >
-                <View
+                <Message
                     style={{
                         marginBottom: 60,
                     }}
-                >
-                    <View style={styles.message}></View>
-                    <View
-                        style={{
-                            width: 0,
-                            height: 0,
-                            position: 'absolute',
-                            right: 30,
-                            bottom: -30,
-                            borderTopColor: 'white',
-                            borderRightColor: 'transparent',
-                            borderLeftColor: 'transparent',
-                            borderTopWidth: 30,
-                            borderRightWidth: 20,
-                            borderLeftWidth: 20,
-                        }}
-                    />
-                </View>
+                />
+
                 {imageHandler(userData.fat)}
                 <Bottom navigation={props.navigation} />
-            </ImageBackground>
-        </View>
+            </Background>
+        </Wrapper>
     )
 }
 
@@ -93,18 +69,12 @@ MainPage.navigationOptions = navData => {
         ),
     }
 }
+const Wrapper = styled.View({
+    flex: 1,
+})
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-    },
-    message: {
-        width: 150,
-        height: 80,
-        borderRadius: 10,
-        backgroundColor: 'white',
-        elevation: 5,
-    },
+const Background = styled.ImageBackground({
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
 })

@@ -1,6 +1,7 @@
 import React from 'react'
-import { View, StyleSheet, Dimensions, Alert } from 'react-native'
+import { Dimensions, Alert, Vibration } from 'react-native'
 import { useSelector } from 'react-redux'
+import styled from 'styled-components/native'
 
 import AttackContainer from '../../molecules/container/AttackContainer'
 import Attack from '../../molecules/button/circle/Attack'
@@ -20,31 +21,27 @@ const { width, height } = Dimensions.get('window')
 export default props => {
     const userData = useSelector(state => state.userData.userData)
 
+    const attack = () => {
+        // attackHandler()
+        Vibration.vibrate(500)
+        Alert.alert('ATTACK', '공격 되었습니다.', [{ text: '확인' }])
+    }
+
     return (
-        <View style={styles.bottom}>
+        <Wrapper>
             <NickContainer nick={userData.name} />
-            <View style={styles.bottomContent}>
+            <Content>
                 <AttackContainer height={height * 0.32}>
-                    <Attack
-                        onPress={() => {
-                            // attackHandler()
-                            Alert.alert('ATTACK', '공격 되었습니다.', [
-                                { text: '확인' },
-                            ])
-                        }}
-                    >
+                    <Attack onPress={attack}>
                         <AttackIcon width={35} height={35} />
                     </Attack>
                 </AttackContainer>
-                <AttackTextButton
-                    onPress={() => {
-                        // attackHandler()
-                        Alert.alert('ATTACK', '공격 되었습니다.', [
-                            { text: '확인' },
-                        ])
-                    }}
-                />
-                <Text size={18} font="black">
+                <AttackTextButton onPress={attack} />
+                <Text
+                    size={18}
+                    font="black"
+                    style={{ marginBottom: height * 0.01 }}
+                >
                     Level 10
                 </Text>
                 <Status
@@ -70,24 +67,23 @@ export default props => {
                         props.navigation.navigate('Run')
                     }}
                 />
-            </View>
-        </View>
+            </Content>
+        </Wrapper>
     )
 }
 
-const styles = StyleSheet.create({
-    bottom: {
-        width: '90%',
-        height: height * 0.39,
-        justifyContent: 'flex-end',
-    },
-    bottomContent: {
-        backgroundColor: 'white',
-        height: height * 0.32,
-        borderTopLeftRadius: 15,
-        borderTopRightRadius: 15,
-        elevation: 3,
-        paddingTop: 20,
-        paddingHorizontal: 30,
-    },
+const Wrapper = styled.View({
+    width: '90%',
+    height: height * 0.39,
+    justifyContent: 'flex-end',
+})
+
+const Content = styled.View({
+    backgroundColor: 'white',
+    height: height * 0.32,
+    paddingTop: height * 0.025,
+    paddingHorizontal: width * 0.06,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    elevation: 3,
 })

@@ -1,36 +1,49 @@
 import React from 'react'
-import { View, StyleSheet, TouchableNativeFeedback } from 'react-native'
-import Colors from '../../../../constants/Colors'
+import {
+    View,
+    StyleSheet,
+    TouchableNativeFeedback,
+    TouchableOpacity,
+    Platform,
+    Dimensions,
+} from 'react-native'
+import styled from 'styled-components/native'
 
+import Colors from '../../../../constants/Colors'
 import Text from '../../../atoms/text/Text'
 
 export default props => {
+    let TouchableCmp = TouchableOpacity
+
+    if (Platform.OS === 'android' && Platform.Version >= 23) {
+        TouchableCmp = TouchableNativeFeedback
+    }
+
     return (
-        <View style={{ ...styles.buttonContainer, ...props.style }}>
-            <TouchableNativeFeedback onPress={props.onPress}>
-                <View style={styles.circle}>
+        <ButtonContainer style={props.style}>
+            <TouchableCmp onPress={props.onPress}>
+                <Circle>
                     <Text size={18} font="black">
                         {props.title}
                     </Text>
-                </View>
-            </TouchableNativeFeedback>
-        </View>
+                </Circle>
+            </TouchableCmp>
+        </ButtonContainer>
     )
 }
 
-const styles = StyleSheet.create({
-    buttonContainer: {
-        width: 70,
-        height: 70,
-        borderRadius: 35,
-        overflow: 'hidden',
-    },
-    circle: {
-        width: 70,
-        height: 70,
-        borderRadius: 35,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: Colors.yellow,
-    },
+const ButtonContainer = styled.View({
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    overflow: 'hidden',
+})
+
+const Circle = styled.View({
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.yellow,
 })

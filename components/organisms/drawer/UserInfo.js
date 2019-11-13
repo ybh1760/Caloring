@@ -1,6 +1,7 @@
 import React from 'react'
-import { View, StyleSheet, Image, Dimensions } from 'react-native'
+import { Dimensions } from 'react-native'
 import { useSelector } from 'react-redux'
+import styled from 'styled-components/native'
 
 import StatusBar from '../../molecules/gauge/StatusBar'
 import Colors from '../../../constants/Colors'
@@ -14,15 +15,14 @@ export default props => {
     const userData = useSelector(state => state.userData.userData)
 
     return (
-        <View style={styles.userInfoContainer}>
-            <View style={styles.userInfo}>
-                <Image
-                    style={styles.image}
+        <Wrapper>
+            <UserInfoDetail>
+                <Charactor
                     source={
                         (src = require('../../../assets/drawerImg/drawer.png'))
                     }
                 />
-                <View style={styles.userInfoDetail}>
+                <UserInfoContent>
                     <Text
                         font="regular"
                         color="white"
@@ -33,18 +33,21 @@ export default props => {
                     >
                         {userData.name} 님
                     </Text>
-                    <Text font="regular" color="white" size={18}>
+                    <Text
+                        font="regular"
+                        color="white"
+                        size={18}
+                        style={{ marginBottom: 5 }}
+                    >
                         Level 10
                     </Text>
-                    <View style={styles.statusContainer}>
-                        <StatusBar
-                            color={Colors.fatGauge}
-                            gauge={gaugeTrack(userData.fat)}
-                            status="fat"
-                        />
-                    </View>
-                </View>
-            </View>
+                    <StatusBar
+                        color={Colors.fatGauge}
+                        gauge={gaugeTrack(userData.fat)}
+                        status="fat"
+                    />
+                </UserInfoContent>
+            </UserInfoDetail>
             <DrawerActions
                 font="regular"
                 content="프로필"
@@ -53,22 +56,29 @@ export default props => {
                     props.navigation.navigate('Main')
                 }}
             />
-        </View>
+        </Wrapper>
     )
 }
 
-const styles = StyleSheet.create({
-    userInfoContainer: { flex: 1 },
-    userInfo: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        height: '75%',
-        justifyContent: 'space-around',
-    },
-    image: { width: 60, height: 80 },
-    userInfoDetail: { width: '55%' },
-    statusContainer: {
-        justifyContent: 'flex-end',
-        height: '20%',
-    },
+const Wrapper = styled.View({
+    height: height * 0.25,
+    backgroundColor: Colors.drawerBlue,
+})
+
+const UserInfoDetail = styled.View({
+    marginTop: height * 0.05,
+    marginBottom: height * 0.02,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: width * 0.05,
+})
+
+const UserInfoContent = styled.View({
+    width: width * 0.5,
+    marginHorizontal: width * 0.05,
+})
+
+const Charactor = styled.Image({
+    width: 60,
+    height: 80,
 })

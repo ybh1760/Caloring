@@ -1,16 +1,17 @@
 import React from 'react'
-import { View, Text, StyleSheet, Dimensions } from 'react-native'
+import { Dimensions } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
+import styled from 'styled-components'
 
 import Colors from '../../../constants/Colors'
 import DrawerActions from '../../molecules/button/DrawerActions'
 import Item from '../../atoms/item/Item'
-import { ScrollView } from 'react-native-gesture-handler'
 
 const { height } = Dimensions.get('window')
 
 export default props => {
     return (
-        <View style={styles.userItem}>
+        <Wrapper>
             <DrawerActions
                 font="regular"
                 style={{ marginTop: 20 }}
@@ -18,28 +19,33 @@ export default props => {
                 color={Colors.drawerBlue}
                 textColor="white"
             />
-            <View style={{ width: '100%' }}>
+            <ItemContainer>
                 <ScrollView horizontal>
-                    <View style={styles.items}>
+                    <Items>
                         <Item />
                         <Item />
                         <Item />
                         <Item />
                         <Item />
                         <Item />
-                    </View>
+                    </Items>
                 </ScrollView>
-            </View>
-        </View>
+            </ItemContainer>
+        </Wrapper>
     )
 }
 
-const styles = StyleSheet.create({
-    userItem: { flex: 1 },
-    items: {
-        marginTop: height * 0.03,
-        flexDirection: 'row',
-        height: '75%',
-        width: '100%',
-    },
+const Wrapper = styled.View({
+    height: height * 0.3,
+})
+
+const Items = styled.View({
+    marginTop: height * 0.03,
+    flexDirection: 'row',
+    height: '75%',
+    width: '100%',
+})
+
+const ItemContainer = styled.View({
+    width: '100%',
 })

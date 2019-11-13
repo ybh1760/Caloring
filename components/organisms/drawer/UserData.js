@@ -1,5 +1,6 @@
 import React from 'react'
-import { View, Image, StyleSheet, Dimensions } from 'react-native'
+import { Image, Dimensions } from 'react-native'
+import styled from 'styled-components/native'
 
 import Colors from '../../../constants/Colors'
 import DrawerActions from '../../molecules/button/DrawerActions'
@@ -9,33 +10,36 @@ const { width, height } = Dimensions.get('window')
 
 export default props => {
     return (
-        <View style={{ flex: 1 }}>
+        <Wrapper>
             <DrawerActions
                 font="regular"
-                style={{ marginTop: 20 }}
+                style={{ marginTop: height * 0.03 }}
                 content="내 기록"
                 color={Colors.drawerBlue}
                 textColor="white"
             />
-            <View style={styles.textContainer}>
+            <TextContainer>
                 <Text font="regular">
                     오늘 <Text color={Colors.drawerBlue}>2km 목표</Text>를
                     달성하셨습니다.
                 </Text>
-            </View>
-            <View style={styles.graphContainer}>
+            </TextContainer>
+            <GraphContainer>
                 <Image />
-            </View>
-        </View>
+            </GraphContainer>
+        </Wrapper>
     )
 }
 
-const styles = StyleSheet.create({
-    textContainer: {
-        marginTop: height * 0.02,
-        paddingHorizontal: width * 0.05,
-    },
-    graphContainer: {
-        height: '70%',
-    },
+const Wrapper = styled.View({
+    flex: 1,
+})
+
+const TextContainer = styled.View({
+    marginTop: height * 0.02,
+    paddingHorizontal: width * 0.05,
+})
+
+const GraphContainer = styled.View({
+    height: '70%',
 })
