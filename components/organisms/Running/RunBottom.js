@@ -115,10 +115,7 @@ export default function Bottom(props) {
                 />
 
                 <View style={styles.actions}>
-                    <IconButton
-                        onPress={finishRunning}
-                        color={Colors.iconButtonGrey}
-                    >
+                    <IconButton onPress={finishRunning} color={Colors.stopGrey}>
                         <StopRun width={28} height={28} fill="white" />
                     </IconButton>
                     {!isRunning ? (
@@ -134,7 +131,7 @@ export default function Bottom(props) {
                             <StartRun width={28} height={28} fill="white" />
                         </IconButton>
                     ) : (
-                        <IconButton onPress={stopRunning} color={Colors.yellow}>
+                        <IconButton onPress={stopRunning} color={Colors.grey}>
                             <PauseRun width={28} height={28} fill="white" />
                         </IconButton>
                     )}

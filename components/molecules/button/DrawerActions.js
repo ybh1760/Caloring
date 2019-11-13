@@ -11,6 +11,7 @@ export default props => {
     return (
         <View style={{ ...styles.actionContanier, ...props.style }}>
             <Round
+                font={props.font}
                 content={props.content}
                 style={{
                     backgroundColor: props.color,

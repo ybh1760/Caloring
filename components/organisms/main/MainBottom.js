@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, Dimensions, Text, Alert } from 'react-native'
+import { View, StyleSheet, Dimensions, Alert } from 'react-native'
 import { useSelector } from 'react-redux'
 
 import AttackContainer from '../../molecules/container/AttackContainer'
@@ -13,7 +13,7 @@ import Colors from '../../../constants/Colors'
 import gaugeTracker from '../../../functions/gaugeTrack'
 import caloringTracker from '../../../functions/caloringTracker'
 import attackHandler from '../../../functions/attackHandler'
-import BlackText from '../../atoms/text/black/Text'
+import Text from '../../atoms/text/Text'
 
 const { width, height } = Dimensions.get('window')
 
@@ -44,14 +44,9 @@ export default props => {
                         ])
                     }}
                 />
-                <BlackText
-                    style={{
-                        fontSize: 18,
-                        marginBottom: 5,
-                    }}
-                >
+                <Text size={18} font="black">
                     Level 10
-                </BlackText>
+                </Text>
                 <Status
                     image="grey"
                     title="칼로링포인트"
@@ -65,8 +60,8 @@ export default props => {
                     title="지방지수"
                     color={Colors.fatGauge}
                     score={userData.fat}
-                    gauge={gaugeTracker(userData.fat)}
                     status="fat"
+                    gauge={gaugeTracker(userData.fat)}
                 />
                 <RunButton
                     title="Run"

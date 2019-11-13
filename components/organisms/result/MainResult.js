@@ -1,12 +1,12 @@
 import React from 'react'
-import { View, Text, StyleSheet, Dimensions, Image } from 'react-native'
+import { View, StyleSheet, Dimensions, Image, PixelRatio } from 'react-native'
 import { useSelector } from 'react-redux'
 
 import DisplayDatas from '../DisplayDatas'
-import RegularText from '../../atoms/text/regular/Text'
 import StatusBar from '../../molecules/gauge/StatusBar'
 import Colors from '../../../constants/Colors'
 import Round from '../../atoms/roundEdge/Round'
+import Text from '../../atoms/text/Text'
 
 const { width, height } = Dimensions.get('window')
 
@@ -34,12 +34,22 @@ export default function MainResult(props) {
                 sec={savedTimeStamp[timeIndex].sec}
             />
             <View style={{ width: '100%', marginTop: height * 0.03 }}>
-                <RegularText style={{ fontSize: 15, textAlign: 'center' }}>
+                <Text
+                    size={15}
+                    font="regular"
+                    color={Colors.grey}
+                    align="center"
+                >
                     칼로링포인트
-                </RegularText>
-                <RegularText style={{ fontSize: 45, textAlign: 'center' }}>
+                </Text>
+                <Text
+                    size={45}
+                    font="regular"
+                    color={Colors.grey}
+                    align="center"
+                >
                     100
-                </RegularText>
+                </Text>
                 <View
                     style={{
                         paddingHorizontal: width * 0.05,
@@ -59,20 +69,25 @@ export default function MainResult(props) {
                         alignSelf: 'center',
                     }}
                 >
-                    <RegularText style={{ fontSize: 15 }}>
+                    <Text size={15} font="regular" color={Colors.grey}>
                         오늘 km 목표를 달성하셨습니다.
-                    </RegularText>
-                    <Round
-                        content="메인화면"
-                        onPress={() => {
-                            props.navigation.popToTop()
-                        }}
-                        style={{
-                            width: width * 0.3,
-                            backgroundColor: Colors.yellow,
-                        }}
-                    />
+                    </Text>
                 </View>
+
+                <Round
+                    content="메인화면"
+                    onPress={() => {
+                        props.navigation.popToTop()
+                    }}
+                    font="black"
+                    style={{
+                        width: width * 0.4,
+                        backgroundColor: Colors.yellow,
+                        paddingVertical: 15,
+                        alignSelf: 'center',
+                        elevation: 3,
+                    }}
+                />
             </View>
         </View>
     )

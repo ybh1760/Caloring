@@ -1,21 +1,16 @@
 import React from 'react'
-import { Text, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 
 import RoundAttack from '../../../atoms/roundEdge/RoundEdge'
 import Colors from '../../../../constants/Colors'
-import BoldText from '../../../atoms/text/bold/Text'
+import Text from '../../../atoms/text/Text'
+
 export default props => {
     return (
         <RoundAttack width={64} style={styles.position} onPress={props.onPress}>
-            <BoldText
-                style={{
-                    fontSize: 10,
-                    textAlign: 'center',
-                    color: Colors.attackRed,
-                }}
-            >
+            <Text size={10} align="center" color={Colors.attackRed} font="bold">
                 ATTACK
-            </BoldText>
+            </Text>
         </RoundAttack>
     )
 }

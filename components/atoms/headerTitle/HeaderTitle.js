@@ -1,7 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
 
-import BoldText from '../text/bold/Text'
+import Text from '../text/Text'
 
 export default props => (
     <View
@@ -11,8 +11,8 @@ export default props => (
             justifyContent: 'center',
         }}
     >
-        <BoldText style={{ fontSize: 18, color: 'white' }}>
+        <Text size={18} color="white" font="bold">
             {props.title}
-        </BoldText>
+        </Text>
     </View>
 )

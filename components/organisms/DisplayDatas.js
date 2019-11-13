@@ -1,10 +1,10 @@
 import React from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 
 import meterCheck from '../atoms/displayMeter/Meters'
 import { minTimer, secTimer } from '../atoms/timer/Timer'
-import RegularText from '../atoms/text/regular/Text'
-import MediumText from '../atoms/text/medium/Text'
+import Text from '../atoms/text/Text'
+import Colors from '../../constants/Colors'
 
 export default props => {
     const { meter, sec } = props
@@ -13,47 +13,47 @@ export default props => {
         <View style={{ ...styles.runDataContainer, ...props.containerStyle }}>
             <View style={styles.row}>
                 <View style={{ width: '50%' }}>
-                    <MediumText
-                        style={{
-                            textAlign: 'center',
-                            fontSize: props.layorSize,
-                        }}
+                    <Text
+                        size={props.layorSize}
+                        font="medium"
+                        color={Colors.grey}
+                        align="center"
                     >
                         DISTANCE
-                    </MediumText>
+                    </Text>
                 </View>
                 <View style={{ width: '50%' }}>
-                    <MediumText
-                        style={{
-                            textAlign: 'center',
-                            fontSize: props.layorSize,
-                        }}
+                    <Text
+                        size={props.layorSize}
+                        font="medium"
+                        color={Colors.grey}
+                        align="center"
                     >
                         TIME
-                    </MediumText>
+                    </Text>
                 </View>
             </View>
             <View style={styles.row}>
                 <View style={{ width: '50%' }}>
-                    <RegularText
-                        style={{
-                            textAlign: 'center',
-                            fontSize: props.dataSize,
-                        }}
+                    <Text
+                        size={props.dataSize}
+                        font="regular"
+                        color={Colors.grey}
+                        align="center"
                     >
                         {meterCheck(meter)}
-                    </RegularText>
+                    </Text>
                 </View>
                 <View style={{ width: '50%' }}>
-                    <RegularText
-                        style={{
-                            textAlign: 'center',
-                            fontSize: props.dataSize,
-                        }}
+                    <Text
+                        size={props.dataSize}
+                        font="regular"
+                        color={Colors.grey}
+                        align="center"
                     >
                         {minTimer(sec)}
                         {secTimer(sec)}
-                    </RegularText>
+                    </Text>
                 </View>
             </View>
         </View>
@@ -68,12 +68,5 @@ const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
-    },
-
-    timer: {
-        margin: 15,
-    },
-    displayData: {
-        fontSize: 30,
     },
 })

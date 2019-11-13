@@ -12,6 +12,7 @@ export default props => {
     return (
         <View style={styles.userItem}>
             <DrawerActions
+                font="regular"
                 style={{ marginTop: 20 }}
                 content="내 아이템"
                 color={Colors.drawerBlue}

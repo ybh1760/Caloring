@@ -1,7 +1,7 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { StyleSheet, TouchableOpacity } from 'react-native'
 
-import RegularText from '../text/regular/Text'
+import Text from '../text/Text'
 
 export default props => {
     return (
@@ -9,16 +9,16 @@ export default props => {
             style={{ ...props.style, ...styles.round }}
             onPress={props.onPress}
         >
-            <RegularText style={{ color: props.color }}>
+            <Text color={props.color} size={props.size} font={props.font}>
                 {props.content}
-            </RegularText>
+            </Text>
         </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
     round: {
-        borderRadius: 15,
+        borderRadius: 30,
         justifyContent: 'center',
         alignItems: 'center',
     },

@@ -1,11 +1,12 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image, Dimensions } from 'react-native'
+import { View, StyleSheet, Image, Dimensions } from 'react-native'
 import { useSelector } from 'react-redux'
 
 import StatusBar from '../../molecules/gauge/StatusBar'
 import Colors from '../../../constants/Colors'
 import DrawerActions from '../../molecules/button/DrawerActions'
 import gaugeTrack from '../../../functions/gaugeTrack'
+import Text from '../../atoms/text/Text'
 
 const { width, height } = Dimensions.get('window')
 
@@ -23,20 +24,16 @@ export default props => {
                 />
                 <View style={styles.userInfoDetail}>
                     <Text
+                        font="regular"
+                        color="white"
+                        size={18}
                         style={{
-                            color: 'white',
-                            fontSize: 18,
                             marginBottom: 8,
                         }}
                     >
                         {userData.name} 님
                     </Text>
-                    <Text
-                        style={{
-                            color: 'white',
-                            fontSize: 18,
-                        }}
-                    >
+                    <Text font="regular" color="white" size={18}>
                         Level 10
                     </Text>
                     <View style={styles.statusContainer}>
@@ -49,6 +46,7 @@ export default props => {
                 </View>
             </View>
             <DrawerActions
+                font="regular"
                 content="프로필"
                 color="white"
                 onPress={() => {

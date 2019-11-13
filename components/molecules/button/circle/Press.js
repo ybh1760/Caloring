@@ -1,17 +1,17 @@
 import React from 'react'
-import { View, StyleSheet, TouchableNativeFeedback, Text } from 'react-native'
+import { View, StyleSheet, TouchableNativeFeedback } from 'react-native'
 import Colors from '../../../../constants/Colors'
 
-import BlackText from '../../../atoms/text/black/Text'
+import Text from '../../../atoms/text/Text'
 
 export default props => {
     return (
         <View style={{ ...styles.buttonContainer, ...props.style }}>
             <TouchableNativeFeedback onPress={props.onPress}>
                 <View style={styles.circle}>
-                    <BlackText style={{ fontSize: 18 }}>
+                    <Text size={18} font="black">
                         {props.title}
-                    </BlackText>
+                    </Text>
                 </View>
             </TouchableNativeFeedback>
         </View>
