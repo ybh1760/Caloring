@@ -7,6 +7,8 @@ import StatusBar from '../../molecules/gauge/StatusBar'
 import Colors from '../../../constants/Colors'
 import Round from '../../atoms/roundEdge/Round'
 import Text from '../../atoms/text/Text'
+import DataGraph from '../../molecules/graph/DataGraph'
+import Graph from '../../molecules/graph/Graph'
 
 const { width, height } = Dimensions.get('window')
 
@@ -73,7 +75,10 @@ export default function MainResult(props) {
                         오늘 km 목표를 달성하셨습니다.
                     </Text>
                 </View>
-
+                {/* <View style={{ alignItems: 'center', width: '100%' }}> */}
+                {/* <DataGraph width={300} /> */}
+                <Graph />
+                {/* </View> */}
                 <Round
                     content="메인화면"
                     onPress={() => {

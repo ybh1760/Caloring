@@ -1,10 +1,11 @@
 import React from 'react'
-import { Image, Dimensions } from 'react-native'
+import { Image, Dimensions, View } from 'react-native'
 import styled from 'styled-components/native'
 
 import Colors from '../../../constants/Colors'
 import DrawerActions from '../../molecules/button/DrawerActions'
 import Text from '../../atoms/text/Text'
+import DataGraph from '../../molecules/graph/DataGraph'
 
 const { width, height } = Dimensions.get('window')
 
@@ -24,22 +25,19 @@ export default props => {
                     달성하셨습니다.
                 </Text>
             </TextContainer>
-            <GraphContainer>
-                <Image />
-            </GraphContainer>
+
+            <View style={{ alignItems: 'center', width: '100%' }}>
+                <DataGraph width={300} />
+            </View>
         </Wrapper>
     )
 }
 
 const Wrapper = styled.View({
-    flex: 1,
+    // flex: 1,
 })
 
 const TextContainer = styled.View({
     marginTop: height * 0.02,
     paddingHorizontal: width * 0.05,
-})
-
-const GraphContainer = styled.View({
-    height: '70%',
 })

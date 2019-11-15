@@ -11,6 +11,7 @@ import FriendsPage from '../components/pages/FriendsPage'
 import Colors from '../constants/Colors'
 import DrawerPage from '../components/pages/DrawerPage'
 import ResultPage from '../components/pages/ResultPage'
+import TouchTest from '../components/pages/TouchTest'
 
 const { width } = Dimensions.get('window')
 
@@ -47,6 +48,7 @@ const DrawerNavigator = createDrawerNavigator(
 
 const MainNavigator = createSwitchNavigator({
     Drawer: DrawerNavigator,
+    test: TouchTest,
     Start: StartPage,
 })
 

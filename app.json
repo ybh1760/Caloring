@@ -23,18 +23,13 @@
         "android": {
             "config": {
                 "googleMaps": {
-                    "apiKey": ""
+                    "apiKey": "AIzaSyAWBgBGsD__OeMglPaz408SIM7-myZCfvM"
                 }
             },
             "permissions": [
                 "android.permission.INTERNET",
                 "android.permission.VIBRATE"
             ]
-        },
-        "packagerOpts": {
-            "config": "metro.config.js",
-            "sourceExts": ["js", "jsx", "ts", "tsx", "svg"],
-            "transformer": "node_modules/react-native-svg-transformer/index.js"
         }
     }
 }
