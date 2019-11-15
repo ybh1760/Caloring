@@ -1,4 +1,4 @@
 export default {
     GoogleApiKey: 'AIzaSyAWBgBGsD__OeMglPaz408SIM7-myZCfvM',
-    AwsUrl: 'http://15.164.129.166:8080',
+    AwsUrl: 'http://13.124.85.168:8080',
 }
