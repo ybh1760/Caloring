@@ -75,10 +75,9 @@ export default function MainResult(props) {
                         오늘 km 목표를 달성하셨습니다.
                     </Text>
                 </View>
-                {/* <View style={{ alignItems: 'center', width: '100%' }}> */}
-                {/* <DataGraph width={300} /> */}
-                <Graph />
-                {/* </View> */}
+                <View style={{ alignItems: 'center', width: '100%' }}>
+                    <DataGraph width={300} />
+                </View>
                 <Round
                     content="메인화면"
                     onPress={() => {

@@ -9,4 +9,6 @@ export default {
     drawerBlue: '#657BFF',
     itemBackColor: '#fcd21d',
     stopGrey: '#979797',
+    friendColor: '#C89E9A',
+    friendsBackground: '#B5C9FB',
 }

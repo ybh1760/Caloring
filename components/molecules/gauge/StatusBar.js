@@ -21,6 +21,7 @@ export default props => {
             <View
                 style={{
                     ...styles.content,
+                    ...props.gaugeStyle,
                     backgroundColor: props.color,
                     width:
                         props.status === 'fat' ? props.gauge : widthHandler(),

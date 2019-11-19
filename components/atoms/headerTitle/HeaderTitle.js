@@ -2,6 +2,7 @@ import React from 'react'
 import { View } from 'react-native'
 
 import Text from '../text/Text'
+import Colors from '../../../constants/Colors'
 
 export default props => (
     <View
@@ -11,7 +12,7 @@ export default props => (
             justifyContent: 'center',
         }}
     >
-        <Text size={18} color="white" font="bold">
+        <Text size={18} color={Colors.grey} font="bold">
             {props.title}
         </Text>
     </View>

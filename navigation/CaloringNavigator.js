@@ -12,6 +12,7 @@ import Colors from '../constants/Colors'
 import DrawerPage from '../components/pages/DrawerPage'
 import ResultPage from '../components/pages/ResultPage'
 import TouchTest from '../components/pages/TouchTest'
+import LogIn from '../components/pages/LogIn'
 
 const { width } = Dimensions.get('window')
 
@@ -24,8 +25,8 @@ const defaultNavOptions = {
 const CharactorNavigator = createStackNavigator(
     {
         Main: MainPage,
-        Run: RunningPage,
         Friends: FriendsPage,
+        Run: RunningPage,
         Result: ResultPage,
     },
     {
@@ -47,6 +48,7 @@ const DrawerNavigator = createDrawerNavigator(
 )
 
 const MainNavigator = createSwitchNavigator({
+    LogIn: LogIn,
     Drawer: DrawerNavigator,
     test: TouchTest,
     Start: StartPage,
