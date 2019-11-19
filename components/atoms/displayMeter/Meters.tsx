@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text } from 'react-native'
 
-export default meter =>
+export default (meter: number) =>
     meter > 100 ? (
         <Text>00.{Math.floor(meter / 10)}</Text>
     ) : (

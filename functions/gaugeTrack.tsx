@@ -1,4 +1,4 @@
-export default fat => {
+export default (fat: number) => {
     switch (fat) {
         case 1:
             return '33.33%'

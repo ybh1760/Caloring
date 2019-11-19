@@ -9,7 +9,13 @@ import Colors from '../../../constants/Colors'
 
 const { height } = Dimensions.get('window')
 
-export default props => {
+interface LabelProps {
+    image: string
+    title: string
+    score: number
+}
+
+export default function Label(props: LabelProps) {
     const { image, title, score } = props
 
     return (

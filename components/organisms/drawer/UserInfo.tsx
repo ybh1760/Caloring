@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dimensions, Image } from 'react-native'
+import { Dimensions } from 'react-native'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
@@ -22,7 +22,6 @@ export default function UserInfo(props: any) {
                 />
                 <UserInfoContent>
                     <Text
-                        font="regular"
                         color="white"
                         size={18}
                         style={{
@@ -31,12 +30,7 @@ export default function UserInfo(props: any) {
                     >
                         {userData.name} 님
                     </Text>
-                    <Text
-                        font="regular"
-                        color="white"
-                        size={18}
-                        style={{ marginBottom: 5 }}
-                    >
+                    <Text color="white" size={18} style={{ marginBottom: 5 }}>
                         Level 10
                     </Text>
                     <StatusBar
