@@ -19,17 +19,6 @@
         "assetBundlePatterns": ["**/*"],
         "ios": {
             "supportsTablet": true
-        },
-        "android": {
-            "config": {
-                "googleMaps": {
-                    "apiKey": "AIzaSyAWBgBGsD__OeMglPaz408SIM7-myZCfvM"
-                }
-            },
-            "permissions": [
-                "android.permission.INTERNET",
-                "android.permission.VIBRATE"
-            ]
         }
     }
 }

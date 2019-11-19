@@ -8,7 +8,7 @@ import UserData from '../organisms/drawer/UserData'
 
 const { height } = Dimensions.get('window')
 
-export default props => {
+export default function DrawerPage(props: any) {
     return (
         <Wrapper>
             <UserInfo navigation={props.navigation} />

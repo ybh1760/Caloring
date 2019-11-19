@@ -1,16 +1,22 @@
 import styled from 'styled-components/native'
 import Colors from '../../../constants/Colors'
 
-const TextProps = props => ({
+interface Iprops {
+    font?: string
+    size?: number
+    color?: string
+    align?: string
+}
+
+const Text = styled.Text<Iprops>((props: any) => ({
     fontSize: props.size,
     fontFamily: props.font,
     color: props.color,
     textAlign: props.align,
-})
+}))
 
-TextProps.defaultProps = {
+Text.defaultProps = {
+    font: 'regular',
     color: Colors.grey,
-    fontFamily: 'regular',
 }
-
-export default styled.Text(TextProps)
+export default Text

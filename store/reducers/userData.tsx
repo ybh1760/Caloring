@@ -5,7 +5,7 @@ const initialState = {
     userData: {},
 }
 
-export default (state = initialState, action) => {
+export default (state: any = initialState, action: any) => {
     switch (action.type) {
         case SET_USER_DATA:
             const newUserData = new UserData(

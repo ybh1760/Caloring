@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dimensions } from 'react-native'
+import { Dimensions, Image } from 'react-native'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
@@ -11,16 +11,14 @@ import Text from '../../atoms/text/Text'
 
 const { width, height } = Dimensions.get('window')
 
-export default props => {
-    const userData = useSelector(state => state.userData.userData)
+export default function UserInfo(props: any) {
+    const userData = useSelector((state: any) => state.userData.userData)
 
     return (
         <Wrapper>
             <UserInfoDetail>
                 <Charactor
-                    source={
-                        (src = require('../../../assets/drawerImg/drawer.png'))
-                    }
+                    source={require('../../../assets/drawerImg/drawer.png')}
                 />
                 <UserInfoContent>
                     <Text
