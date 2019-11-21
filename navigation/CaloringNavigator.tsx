@@ -13,11 +13,12 @@ import DrawerPage from '../components/pages/DrawerPage'
 import ResultPage from '../components/pages/ResultPage'
 import LogIn from '../components/pages/LogIn'
 
-const { width } = Dimensions.get('window')
+const { width, height: ScreenHeight } = Dimensions.get('window')
 
 const defaultNavOptions = {
     headerStyle: {
         backgroundColor: Colors.headerBack,
+        height: ScreenHeight <= 640 ? ScreenHeight * 0.08 : ScreenHeight * 0.07,
     },
 }
 
@@ -47,8 +48,8 @@ const DrawerNavigator = createDrawerNavigator(
 )
 
 const MainNavigator = createSwitchNavigator({
-    LogIn: LogIn,
     Drawer: DrawerNavigator,
+    LogIn: LogIn,
     Start: StartPage,
 })
 

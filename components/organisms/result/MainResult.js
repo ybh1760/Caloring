@@ -8,9 +8,9 @@ import Colors from '../../../constants/Colors'
 import Round from '../../atoms/roundEdge/Round'
 import Text from '../../atoms/text/Text'
 import DataGraph from '../../molecules/graph/DataGraph'
-import Graph from '../../molecules/graph/Graph'
+import FontSize from '../../../constants/FontSize'
 
-const { width, height } = Dimensions.get('window')
+const { width, height: ScreenHeight } = Dimensions.get('window')
 
 export default function MainResult(props) {
     const savedTimeStamp = useSelector(state => state.time.timeStamp)
@@ -23,39 +23,29 @@ export default function MainResult(props) {
         <View style={styles.resultContainer}>
             <Image
                 source={(src = require('../../../assets/drawerImg/drawer.png'))}
-                style={{ marginTop: height * 0.04 }}
+                style={{ marginTop: ScreenHeight * 0.04 }}
             />
             <DisplayDatas
                 containerStyle={{
                     width: '85%',
-                    marginTop: height * 0.04,
+                    marginTop: ScreenHeight * 0.04,
                 }}
-                layorSize={15}
-                dataSize={45}
+                layorSize={FontSize(1)}
+                dataSize={FontSize(5)}
                 meter={savedDistance[disIndex]}
                 sec={savedTimeStamp[timeIndex].sec}
             />
-            <View style={{ width: '100%', marginTop: height * 0.03 }}>
-                <Text
-                    size={15}
-                    font="regular"
-                    color={Colors.grey}
-                    align="center"
-                >
+            <View style={{ width: '100%', marginTop: ScreenHeight * 0.03 }}>
+                <Text size={FontSize(1)} align="center">
                     칼로링포인트
                 </Text>
-                <Text
-                    size={45}
-                    font="regular"
-                    color={Colors.grey}
-                    align="center"
-                >
+                <Text size={FontSize(5)} align="center">
                     100
                 </Text>
                 <View
                     style={{
                         paddingHorizontal: width * 0.05,
-                        marginTop: height * 0.01,
+                        marginTop: ScreenHeight * 0.01,
                     }}
                 >
                     <StatusBar
@@ -67,11 +57,11 @@ export default function MainResult(props) {
                 <View
                     style={{
                         width: '80%',
-                        marginVertical: height * 0.02,
+                        marginVertical: ScreenHeight * 0.02,
                         alignSelf: 'center',
                     }}
                 >
-                    <Text size={15} font="regular" color={Colors.grey}>
+                    <Text size={FontSize(1)}>
                         오늘 km 목표를 달성하셨습니다.
                     </Text>
                 </View>
@@ -99,8 +89,8 @@ export default function MainResult(props) {
 
 const styles = StyleSheet.create({
     resultContainer: {
-        width: width * 0.95,
-        height: height * 0.98,
+        width: '95%',
+        height: '95%',
         backgroundColor: 'white',
         borderRadius: 10,
         elevation: 2,

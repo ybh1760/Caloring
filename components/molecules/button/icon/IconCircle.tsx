@@ -1,5 +1,8 @@
 import React from 'react'
 import { View, StyleSheet, TouchableNativeFeedback } from 'react-native'
+import styled from 'styled-components/native'
+
+import Rem from '../../../../constants/Rem'
 
 interface IconCircleButtomProps {
     style?: object
@@ -10,31 +13,31 @@ interface IconCircleButtomProps {
 
 export default function IconCircle(props: IconCircleButtomProps) {
     return (
-        <View style={{ ...styles.buttonContainer, ...props.style }}>
+        <ButtonContainer style={props.style}>
             <TouchableNativeFeedback onPress={props.onPress}>
-                <View
-                    style={{ ...styles.circle, backgroundColor: props.color }}
-                >
-                    {props.children}
-                </View>
+                <Circle color={props.color}>{props.children}</Circle>
             </TouchableNativeFeedback>
-        </View>
+        </ButtonContainer>
     )
 }
 
 const styles = StyleSheet.create({
-    buttonContainer: {
-        width: 70,
-        height: 70,
-        borderRadius: 35,
-        elevation: 5,
-        overflow: 'hidden',
-    },
     circle: {
-        width: 70,
-        height: 70,
-        borderRadius: 35,
-        justifyContent: 'center',
-        alignItems: 'center',
+        width: Rem() * 5,
+        height: Rem() * 5,
+        borderRadius: Rem() * 2.5,
     },
 })
+
+const ButtonContainer = styled.View({
+    ...styles.circle,
+    elevation: 5,
+    overflow: 'hidden',
+})
+
+const Circle = styled.View((props: { color?: string }) => ({
+    ...styles.circle,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: props.color,
+}))

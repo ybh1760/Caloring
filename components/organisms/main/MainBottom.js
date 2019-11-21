@@ -15,8 +15,9 @@ import gaugeTracker from '../../../functions/gaugeTrack'
 import caloringTracker from '../../../functions/caloringTracker'
 import attackHandler from '../../../functions/attackHandler'
 import Text from '../../atoms/text/Text'
+import FontSize from '../../../constants/FontSize'
 
-const { width, height } = Dimensions.get('window')
+const { width, height: ScreenHeight } = Dimensions.get('window')
 
 export default props => {
     const userData = useSelector(state => state.userData.userData)
@@ -31,16 +32,16 @@ export default props => {
         <Wrapper>
             <NickContainer nick={userData.name} />
             <Content>
-                <AttackContainer height={height * 0.32}>
+                <AttackContainer height={ScreenHeight * 0.32}>
                     <Attack onPress={attack}>
                         <AttackIcon width={35} height={35} />
                     </Attack>
                 </AttackContainer>
                 <AttackTextButton onPress={attack} />
                 <Text
-                    size={18}
-                    font="black"
-                    style={{ marginBottom: height * 0.01 }}
+                    size={FontSize(3)}
+                    font="medium"
+                    style={{ marginBottom: ScreenHeight * 0.01 }}
                 >
                     Level 10
                 </Text>
@@ -73,15 +74,15 @@ export default props => {
 }
 
 const Wrapper = styled.View({
-    width: '90%',
-    height: height * 0.39,
+    width: '95%',
+    height: ScreenHeight * 0.39,
     justifyContent: 'flex-end',
 })
 
 const Content = styled.View({
     backgroundColor: 'white',
-    height: height * 0.32,
-    paddingTop: height * 0.025,
+    height: ScreenHeight * 0.32,
+    paddingTop: ScreenHeight * 0.025,
     paddingHorizontal: width * 0.06,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,

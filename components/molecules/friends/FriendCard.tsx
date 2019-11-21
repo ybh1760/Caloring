@@ -3,13 +3,15 @@ import { Dimensions, View } from 'react-native'
 import styled from 'styled-components/native'
 
 import Colors from '../../../constants/Colors'
-import StatusBar from '../../molecules/gauge/StatusBar'
+import StatusBar from '../gauge/StatusBar'
 import Attack from '../../atoms/button/AttackIcon'
 import Text from '../../atoms/text/Text'
 
 const { width } = Dimensions.get('window')
 
-export default props => {
+interface FriendListItemProps {}
+
+export default function FriendListItem(props: FriendListItemProps) {
     return (
         <FriendCard>
             <Character>

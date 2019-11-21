@@ -1,9 +1,11 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, Dimensions } from 'react-native'
 import { LineChart } from 'react-native-chart-kit'
 import Colors from '../../../constants/Colors'
 
 import Crown from '../../atoms/Icon/Crown'
+
+const { height: ScreenHeight } = Dimensions.get('window')
 
 const ChartConfig = {
     backgroundColor: 'white',
@@ -23,7 +25,7 @@ const ChartConfig = {
 }
 
 export default props => {
-    const { width } = props
+    const { width, height } = props
     return (
         <LineChart
             data={{
@@ -35,7 +37,7 @@ export default props => {
                 ],
             }}
             width={width} // from react-native
-            height={220}
+            height={ScreenHeight >= 640 ? 220 : 100}
             withInnerLines
             yLabelsOffset={33}
             decorator={value => {

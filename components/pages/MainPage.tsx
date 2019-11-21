@@ -1,8 +1,8 @@
 import React from 'react'
-import { Alert } from 'react-native'
+import { Alert, Dimensions } from 'react-native'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 import { useSelector } from 'react-redux'
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 import HeaderTitle from '../atoms/headerTitle/HeaderTitle'
 import HeaderButton from '../molecules/button/HeaderButton'
@@ -10,30 +10,26 @@ import imageHandler from '../../functions/imageHandler'
 import Bottom from '../organisms/main/MainBottom'
 import Message from '../molecules/message/Message'
 
-export default function MainPage(props) {
-    const userData = useSelector(state => state.userData.userData)
+const { width: ScreenWidth, height: ScreenHeight } = Dimensions.get('window')
+
+export default function MainPage(props: any) {
+    const userData = useSelector((state: any) => state.userData.userData)
 
     return (
         <Wrapper>
             <Background
-                source={
-                    (src = require('../../assets/backgroundImg/mainBackground.png'))
-                }
+                source={require('../../assets/backgroundImg/mainBackground.png')}
             >
-                <Message
-                    style={{
-                        marginBottom: 60,
-                    }}
-                />
+                <Message />
+                {imageHandler(3)}
 
-                {imageHandler(userData.fat)}
                 <Bottom navigation={props.navigation} />
             </Background>
         </Wrapper>
     )
 }
 
-MainPage.navigationOptions = navData => {
+MainPage.navigationOptions = (navData: any) => {
     return {
         headerTitle: <HeaderTitle title="MY ROOM" />,
         headerLeft: (

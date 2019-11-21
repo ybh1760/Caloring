@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import styled from 'styled-components/native'
 
 import Colors from '../../../constants/Colors'
+import Rem from '../../../constants/Rem'
 
 interface StatusBarProps {
     gauge: any
@@ -39,17 +40,17 @@ export default function StatusBar(props: StatusBarProps) {
 
 const Background = styled.View({
     width: '100%',
-    height: 20,
-    borderRadius: 10,
+    height: Rem(),
+    borderRadius: Rem() * 0.5,
     backgroundColor: Colors.barStatus,
-    padding: 4,
+    padding: Rem() * 0.1,
 })
 
 const Content = styled.View(
     (props: { status: string; gauge: number; color: string }) => ({
         width: props.status === 'fat' ? props.gauge : '33.33%',
-        height: 12,
-        borderRadius: 10,
+        height: Rem() * 0.8,
+        borderRadius: Rem() * 0.4,
         backgroundColor: props.color,
     })
 )

@@ -11,6 +11,7 @@ import styled from 'styled-components/native'
 
 import Colors from '../../../../constants/Colors'
 import Text from '../../../atoms/text/Text'
+import Rem from '../../../../constants/Rem'
 
 interface PressButtonProps {
     style?: object
@@ -38,17 +39,21 @@ export default function Press(props: PressButtonProps) {
     )
 }
 
+const styles = StyleSheet.create({
+    circle: {
+        width: Rem() * 5,
+        height: Rem() * 5,
+        borderRadius: Rem() * 2.5,
+    },
+})
+
 const ButtonContainer = styled.View({
-    width: 70,
-    height: 70,
-    borderRadius: 35,
+    ...styles.circle,
     overflow: 'hidden',
 })
 
 const Circle = styled.View({
-    width: 70,
-    height: 70,
-    borderRadius: 35,
+    ...styles.circle,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: Colors.yellow,

@@ -1,6 +1,6 @@
 export default async () => {
     try {
-        const response = await fetch(`/user/${userData.id}/attack`, {
+        const response = await fetch(`/user/attack`, {
             method: 'PUT',
         })
         if (!response.ok) {

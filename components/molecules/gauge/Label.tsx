@@ -6,6 +6,7 @@ import Text from '../../atoms/text/Text'
 import Grey from '../../atoms/Icon/Grey'
 import Red from '../../atoms/Icon/Red'
 import Colors from '../../../constants/Colors'
+import FontSize from '../../../constants/FontSize'
 
 const { height } = Dimensions.get('window')
 
@@ -21,12 +22,12 @@ export default function Label(props: LabelProps) {
     return (
         <Wrapper>
             {image === 'grey' ? (
-                <Grey width={20} height={20} />
+                <Grey width={FontSize(3)} height={FontSize(3)} />
             ) : (
-                <Red width={20} height={20} />
+                <Red width={FontSize(3)} height={FontSize(3)} />
             )}
             <Text
-                size={13}
+                size={FontSize(1)}
                 font="regular"
                 color={Colors.grey}
                 style={styles.content}

@@ -1,12 +1,16 @@
 import React from 'react'
-import { View, Image, StyleSheet } from 'react-native'
+import { View, Image, StyleSheet, PixelRatio, Dimensions } from 'react-native'
+
+const { width: ScreenWidth } = Dimensions.get('window')
 
 export default fat => {
     if (fat === 1) {
         return (
             <View style={styles.charactor1}>
                 <Image
-                    source={(src = require('../assets/CharactorImg/main1.png'))}
+                    source={
+                        (src = require(`../assets/CharactorImg/main${1}.png`))
+                    }
                     style={styles.image}
                 />
             </View>
@@ -43,16 +47,16 @@ export default fat => {
 
 const styles = StyleSheet.create({
     charactor1: {
-        width: 150,
-        height: 165,
+        width: 105,
+        height: 131,
     },
     charactor2: {
-        width: 170,
-        height: 180,
+        width: 105,
+        height: 96,
     },
     charactor3: {
-        width: 200,
-        height: 200,
+        width: 105,
+        height: 88,
     },
     image: {
         width: '100%',

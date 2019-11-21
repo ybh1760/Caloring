@@ -15,6 +15,7 @@ import DisplayDatas from '../DisplayDatas'
 import StartRun from '../../atoms/button/StartRun'
 import PauseRun from '../../atoms/button/PauseRun'
 import StopRun from '../../atoms/button/StopRun'
+import FontSize from '../../../constants/FontSize'
 
 let resultId
 const { width, height } = Dimensions.get('window')
@@ -50,7 +51,7 @@ export default function Bottom(props) {
     const watchPosition = async () => {
         const hasPermission = await verifyLocationPermissions()
         if (!hasPermission) {
-            throw new Error('permission이 없어!!!!!')
+            throw new Error('Location Permission Error')
         }
         try {
             const result = await Location.watchPositionAsync(
@@ -108,8 +109,8 @@ export default function Bottom(props) {
                 />
 
                 <DisplayDatas
-                    layerSize={15}
-                    dataSize={35}
+                    layerSize={FontSize(1)}
+                    dataSize={FontSize(4)}
                     meter={meter}
                     sec={sec}
                 />

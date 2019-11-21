@@ -27,7 +27,7 @@ export default function RunningPage(props) {
         if (isRunning) {
             const time = setInterval(() => {
                 setMotion(prev => !prev)
-            }, 100)
+            }, 500)
             setTimeId(time)
         } else {
             clearInterval(timeId)

@@ -1,6 +1,8 @@
 import React from 'react'
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
+
 import Colors from '../../../../constants/Colors'
+import Rem from '../../../../constants/Rem'
 
 interface AttackButtonProps {
     onPress: any
@@ -24,9 +26,9 @@ export default function Attack(props: AttackButtonProps) {
 
 const styles = StyleSheet.create({
     circle: {
-        width: 64,
-        height: 64,
-        borderRadius: 32,
+        width: Rem() * 4.5,
+        height: Rem() * 4.5,
+        borderRadius: Rem() * 2.25,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: Colors.attackRed,

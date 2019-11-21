@@ -24,5 +24,5 @@ export default motion => {
 }
 
 const styles = StyleSheet.create({
-    image: { width: '100%', height: '100%' },
+    image: { width: 105, height: 138 },
 })
