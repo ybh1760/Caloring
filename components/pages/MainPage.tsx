@@ -18,7 +18,11 @@ export default function MainPage(props: any) {
     return (
         <Wrapper>
             <Background
-                source={require('../../assets/backgroundImg/mainBackground.png')}
+                source={
+                    ScreenHeight > 640
+                        ? require('../../assets/backgroundImg/mainBackground.png')
+                        : require('../../assets/backgroundImg/mainBackgroundSmall.png')
+                }
             >
                 <Message />
                 {imageHandler(3)}

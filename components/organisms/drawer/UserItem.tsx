@@ -11,11 +11,12 @@ const { height } = Dimensions.get('window')
 
 interface UserItem {
     navigation: any
+    style: object
 }
 
 export default function UserItem(props: UserItem) {
     return (
-        <Wrapper>
+        <Wrapper style={props.style}>
             <DrawerActions
                 font="regular"
                 style={{ marginTop: 20 }}
@@ -39,9 +40,7 @@ export default function UserItem(props: UserItem) {
     )
 }
 
-const Wrapper = styled.View({
-    height: height * 0.3,
-})
+const Wrapper = styled.View({})
 
 const Items = styled.View({
     marginTop: height * 0.03,

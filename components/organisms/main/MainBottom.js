@@ -16,6 +16,7 @@ import caloringTracker from '../../../functions/caloringTracker'
 import attackHandler from '../../../functions/attackHandler'
 import Text from '../../atoms/text/Text'
 import FontSize from '../../../constants/FontSize'
+import Rem from '../../../constants/Rem'
 
 const { width, height: ScreenHeight } = Dimensions.get('window')
 
@@ -82,8 +83,8 @@ const Wrapper = styled.View({
 const Content = styled.View({
     backgroundColor: 'white',
     height: ScreenHeight * 0.32,
-    paddingTop: ScreenHeight * 0.025,
-    paddingHorizontal: width * 0.06,
+    paddingHorizontal: FontSize(2),
+    paddingTop: Rem() / 2,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
     elevation: 3,

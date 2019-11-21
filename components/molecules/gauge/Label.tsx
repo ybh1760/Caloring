@@ -7,6 +7,7 @@ import Grey from '../../atoms/Icon/Grey'
 import Red from '../../atoms/Icon/Red'
 import Colors from '../../../constants/Colors'
 import FontSize from '../../../constants/FontSize'
+import Rem from '../../../constants/Rem'
 
 const { height } = Dimensions.get('window')
 
@@ -22,9 +23,9 @@ export default function Label(props: LabelProps) {
     return (
         <Wrapper>
             {image === 'grey' ? (
-                <Grey width={FontSize(3)} height={FontSize(3)} />
+                <Grey width={FontSize(2)} height={FontSize(2)} />
             ) : (
-                <Red width={FontSize(3)} height={FontSize(3)} />
+                <Red width={FontSize(2)} height={FontSize(2)} />
             )}
             <Text
                 size={FontSize(1)}
@@ -40,7 +41,7 @@ export default function Label(props: LabelProps) {
 
 const Wrapper = styled.View({
     flexDirection: 'row',
-    marginBottom: height * 0.01,
+    marginBottom: Rem() / 2,
     alignItems: 'center',
 })
 

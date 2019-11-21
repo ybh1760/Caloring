@@ -16,11 +16,12 @@ import StartRun from '../../atoms/button/StartRun'
 import PauseRun from '../../atoms/button/PauseRun'
 import StopRun from '../../atoms/button/StopRun'
 import FontSize from '../../../constants/FontSize'
+import Rem from '../../../constants/Rem'
 
 let resultId
 const { width, height } = Dimensions.get('window')
 
-export default function Bottom(props) {
+export default function RunBottom(props) {
     const [isRunning, setIsRunnig] = useState(false)
     const [timeId, setTimeId] = useState()
     // const userData = useSelector(state => state.userData.userData)
@@ -117,7 +118,11 @@ export default function Bottom(props) {
 
                 <View style={styles.actions}>
                     <IconButton onPress={finishRunning} color={Colors.stopGrey}>
-                        <StopRun width={28} height={28} fill="white" />
+                        <StopRun
+                            width={Rem() * 2}
+                            height={Rem() * 2}
+                            fill="white"
+                        />
                     </IconButton>
                     {!isRunning ? (
                         <IconButton
@@ -129,11 +134,19 @@ export default function Bottom(props) {
                             }}
                             color={Colors.yellow}
                         >
-                            <StartRun width={28} height={28} fill="white" />
+                            <StartRun
+                                width={Rem() * 2}
+                                height={Rem() * 2}
+                                fill="white"
+                            />
                         </IconButton>
                     ) : (
                         <IconButton onPress={stopRunning} color={Colors.grey}>
-                            <PauseRun width={28} height={28} fill="white" />
+                            <PauseRun
+                                width={Rem() * 2}
+                                height={Rem() * 2}
+                                fill="white"
+                            />
                         </IconButton>
                     )}
                 </View>
@@ -150,14 +163,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     container: {
-        borderTopLeftRadius: 15,
-        borderTopRightRadius: 15,
-        width: '90%',
+        width: '95%',
         height: height * 0.32,
         backgroundColor: '#fff',
         elevation: 6,
-        paddingHorizontal: 20,
-        paddingTop: 15,
+        paddingHorizontal: FontSize(2),
+        paddingTop: FontSize(1),
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
     },
     actions: {
         width: '65%',

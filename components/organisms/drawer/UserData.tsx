@@ -11,11 +11,12 @@ const { width, height } = Dimensions.get('window')
 
 interface UserDataProps {
     navigation: any
+    style?: object
 }
 
 export default function UserData(props: UserDataProps) {
     return (
-        <Wrapper>
+        <Wrapper style={props.style}>
             <DrawerActions
                 font="regular"
                 style={{ marginTop: height * 0.03 }}
@@ -37,9 +38,7 @@ export default function UserData(props: UserDataProps) {
     )
 }
 
-const Wrapper = styled.View({
-    flex: 1,
-})
+const Wrapper = styled.View({})
 
 const TextContainer = styled.View({
     marginTop: height * 0.02,

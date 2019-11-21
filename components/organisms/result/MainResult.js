@@ -9,6 +9,7 @@ import Round from '../../atoms/roundEdge/Round'
 import Text from '../../atoms/text/Text'
 import DataGraph from '../../molecules/graph/DataGraph'
 import FontSize from '../../../constants/FontSize'
+import Rem from '../../../constants/Rem'
 
 const { width, height: ScreenHeight } = Dimensions.get('window')
 
@@ -74,10 +75,11 @@ export default function MainResult(props) {
                         props.navigation.popToTop()
                     }}
                     font="black"
+                    size={FontSize(1)}
                     style={{
                         width: width * 0.4,
                         backgroundColor: Colors.yellow,
-                        paddingVertical: 15,
+                        paddingVertical: Rem(),
                         alignSelf: 'center',
                         elevation: 3,
                     }}

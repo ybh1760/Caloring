@@ -12,12 +12,15 @@ import styled from 'styled-components/native'
 import Colors from '../../../../constants/Colors'
 import Text from '../../../atoms/text/Text'
 import Rem from '../../../../constants/Rem'
+import FontSize from '../../../../constants/FontSize'
 
 interface PressButtonProps {
     style?: object
     onPress: any
     title: string
 }
+
+const { height: ScreenHeight } = Dimensions.get('window')
 
 export default function Press(props: PressButtonProps) {
     let TouchableCmp: any = TouchableOpacity
@@ -30,7 +33,7 @@ export default function Press(props: PressButtonProps) {
         <ButtonContainer style={props.style}>
             <TouchableCmp onPress={props.onPress}>
                 <Circle>
-                    <Text size={18} font="black">
+                    <Text size={FontSize(2)} font="black">
                         {props.title}
                     </Text>
                 </Circle>
@@ -41,9 +44,9 @@ export default function Press(props: PressButtonProps) {
 
 const styles = StyleSheet.create({
     circle: {
-        width: Rem() * 5,
-        height: Rem() * 5,
-        borderRadius: Rem() * 2.5,
+        width: ScreenHeight > 640 ? Rem() * 5 : Rem() * 4,
+        height: ScreenHeight > 640 ? Rem() * 5 : Rem() * 4,
+        borderRadius: ScreenHeight > 640 ? Rem() * 2.5 : Rem() * 2,
     },
 })
 

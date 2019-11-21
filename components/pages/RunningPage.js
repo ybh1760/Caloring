@@ -15,7 +15,7 @@ import LeftArrow from '../atoms/button/LeftArrow'
 import runImageHandler from '../../functions/runImageHandler'
 import HeaderTitle from '../atoms/headerTitle/HeaderTitle'
 
-const { width, height } = Dimensions.get('window')
+const { width, height: ScreenHeight } = Dimensions.get('window')
 
 export default function RunningPage(props) {
     const [timeId, setTimeId] = useState(0)
@@ -39,7 +39,10 @@ export default function RunningPage(props) {
             <ImageBackground
                 style={styles.imageBackground}
                 source={
-                    (src = require('../../assets/backgroundImg/runBackground.png'))
+                    (src =
+                        ScreenHeight > 640
+                            ? require('../../assets/backgroundImg/runBackground.png')
+                            : require('../../assets/backgroundImg/mainBackgroundSmall.png'))
                 }
             >
                 <View style={styles.content}>

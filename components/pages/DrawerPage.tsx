@@ -6,22 +6,34 @@ import UserInfo from '../organisms/drawer/UserInfo'
 import UserItem from '../organisms/drawer/UserItem'
 import UserData from '../organisms/drawer/UserData'
 
-const { height } = Dimensions.get('window')
+const { height: ScreenHeight } = Dimensions.get('window')
 
 export default function DrawerPage(props: any) {
     return (
-        <Wrapper>
-            <UserInfo navigation={props.navigation} />
-            <UserItem navigation={props.navigation} />
-            <Line />
-            <UserData navigation={props.navigation} />
-        </Wrapper>
+        <Screen>
+            <Wrapper>
+                <UserInfo
+                    navigation={props.navigation}
+                    style={{ height: ScreenHeight >= 640 ? '25%' : '28%' }}
+                />
+                <UserItem
+                    navigation={props.navigation}
+                    style={{ height: '30%' }}
+                />
+                <Line />
+                <UserData navigation={props.navigation} />
+            </Wrapper>
+        </Screen>
     )
 }
 
+const Screen = styled.View({
+    height: ScreenHeight,
+    marginTop: StatusBar.currentHeight,
+})
+
 const Wrapper = styled.View({
-    height: height,
-    paddingTop: StatusBar.currentHeight,
+    height: '100%',
 })
 
 const Line = styled.View({

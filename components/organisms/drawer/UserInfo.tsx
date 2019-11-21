@@ -8,6 +8,8 @@ import Colors from '../../../constants/Colors'
 import DrawerActions from '../../molecules/button/DrawerActions'
 import gaugeTrack from '../../../functions/gaugeTrack'
 import Text from '../../atoms/text/Text'
+import FontSize from '../../../constants/FontSize'
+import Rem from '../../../constants/Rem'
 
 const { width, height } = Dimensions.get('window')
 
@@ -15,7 +17,7 @@ export default function UserInfo(props: any) {
     const userData = useSelector((state: any) => state.userData.userData)
 
     return (
-        <Wrapper>
+        <Wrapper style={props.style}>
             <UserInfoDetail>
                 <Charactor
                     source={require('../../../assets/drawerImg/drawer.png')}
@@ -23,14 +25,18 @@ export default function UserInfo(props: any) {
                 <UserInfoContent>
                     <Text
                         color="white"
-                        size={18}
+                        size={FontSize(3)}
                         style={{
-                            marginBottom: 8,
+                            marginBottom: Rem() * 0.5,
                         }}
                     >
                         {userData.name} 님
                     </Text>
-                    <Text color="white" size={18} style={{ marginBottom: 5 }}>
+                    <Text
+                        color="white"
+                        size={FontSize(2)}
+                        style={{ marginBottom: Rem() * 0.6 }}
+                    >
                         Level 10
                     </Text>
                     <StatusBar
@@ -53,7 +59,6 @@ export default function UserInfo(props: any) {
 }
 
 const Wrapper = styled.View({
-    height: height * 0.25,
     backgroundColor: Colors.drawerBlue,
 })
 
@@ -71,6 +76,6 @@ const UserInfoContent = styled.View({
 })
 
 const Charactor = styled.Image({
-    width: 60,
-    height: 80,
+    width: 56,
+    height: 77,
 })
