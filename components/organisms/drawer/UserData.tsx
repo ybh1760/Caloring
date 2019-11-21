@@ -9,7 +9,11 @@ import DataGraph from '../../molecules/graph/DataGraph'
 
 const { width, height } = Dimensions.get('window')
 
-export default props => {
+interface UserDataProps {
+    navigation: any
+}
+
+export default function UserData(props: UserDataProps) {
     return (
         <Wrapper>
             <DrawerActions
@@ -34,7 +38,7 @@ export default props => {
 }
 
 const Wrapper = styled.View({
-    // flex: 1,
+    flex: 1,
 })
 
 const TextContainer = styled.View({

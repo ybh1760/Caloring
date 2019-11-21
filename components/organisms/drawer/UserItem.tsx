@@ -1,7 +1,7 @@
 import React from 'react'
 import { Dimensions } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 import Colors from '../../../constants/Colors'
 import DrawerActions from '../../molecules/button/DrawerActions'
@@ -9,7 +9,11 @@ import Item from '../../atoms/item/Item'
 
 const { height } = Dimensions.get('window')
 
-export default props => {
+interface UserItem {
+    navigation: any
+}
+
+export default function UserItem(props: UserItem) {
     return (
         <Wrapper>
             <DrawerActions

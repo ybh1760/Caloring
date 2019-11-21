@@ -1,13 +1,22 @@
 import React from 'react'
 import { View, StyleSheet, Dimensions } from 'react-native'
 
-import IconButton from '../../molecules/button/icon/Icon'
+import IconButton from './icon/Icon'
 import Right from '../../atoms/button/DrawerRight'
-import Round from '../../../components/atoms/roundEdge/Round'
+import Round from '../../atoms/roundEdge/Round'
 
 const { width } = Dimensions.get('window')
 
-export default props => {
+interface DrawerActionsProps {
+    style?: object
+    font?: string
+    content?: string
+    color?: string
+    textColor?: string
+    onPress?: any
+}
+
+export default function DrawerActions(props: DrawerActionsProps) {
     return (
         <View style={{ ...styles.actionContanier, ...props.style }}>
             <Round

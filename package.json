@@ -12,6 +12,7 @@
         "@types/react-redux": "^7.1.5",
         "@types/styled-components": "^4.4.0",
         "expo": "^35.0.0",
+        "expo-app-auth": "^7.0.0",
         "expo-location": "^7.0.0",
         "expo-permissions": "^7.0.0",
         "expo-web-browser": "^7.0.1",

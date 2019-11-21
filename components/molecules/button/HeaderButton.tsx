@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons'
 
 import Colors from '../../../constants/Colors'
 
-export default props => {
+export default (props: any) => {
     return (
         <HeaderButton
             {...props}

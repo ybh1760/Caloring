@@ -47,8 +47,8 @@ const DrawerNavigator = createDrawerNavigator(
 )
 
 const MainNavigator = createSwitchNavigator({
-    Drawer: DrawerNavigator,
     LogIn: LogIn,
+    Drawer: DrawerNavigator,
     Start: StartPage,
 })
 

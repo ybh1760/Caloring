@@ -1,7 +1,14 @@
 import React from 'react'
 import { View, StyleSheet, TouchableNativeFeedback } from 'react-native'
 
-export default props => {
+interface IconCircleButtomProps {
+    style?: object
+    onPress: any
+    color?: string
+    children?: any
+}
+
+export default function IconCircle(props: IconCircleButtomProps) {
     return (
         <View style={{ ...styles.buttonContainer, ...props.style }}>
             <TouchableNativeFeedback onPress={props.onPress}>

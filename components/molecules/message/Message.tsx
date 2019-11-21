@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components/native'
 
-export default props => {
-    return <Message style={props.style} />
+export default function Message(props: { style: object }) {
+    return <MessageCmp style={props.style} />
 }
 
-const Message = styled.View({
+const MessageCmp = styled.View({
     width: 150,
     height: 80,
     borderRadius: 10,

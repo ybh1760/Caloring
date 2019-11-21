@@ -1,14 +1,14 @@
 import React from 'react'
 import { Text } from 'react-native'
 
-export const minTimer = sec =>
+export const minTimer = (sec: number) =>
     sec / 60 > 9 ? (
         <Text>{`${Math.floor(sec / 60)}`}</Text>
     ) : (
         <Text>{`0${Math.floor(sec / 60)}`}</Text>
     )
 
-export const secTimer = sec =>
+export const secTimer = (sec: number) =>
     sec % 60 > 9 ? (
         <Text>{`:${sec % 60}`}</Text>
     ) : (

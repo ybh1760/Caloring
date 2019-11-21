@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
 
-export default props => {
+export default (props: any) => {
     return (
         <TouchableOpacity
             style={{ ...styles.round, width: props.width, ...props.style }}

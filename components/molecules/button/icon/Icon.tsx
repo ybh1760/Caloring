@@ -1,7 +1,12 @@
 import React from 'react'
 import { TouchableOpacity, StyleSheet } from 'react-native'
 
-export default props => {
+interface IconButtonProps {
+    onPress: any
+    children?: any
+}
+
+export default function Icon(props: IconButtonProps) {
     return (
         <TouchableOpacity
             onPress={props.onPress}

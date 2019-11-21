@@ -3,7 +3,16 @@ import { StyleSheet, TouchableOpacity } from 'react-native'
 
 import Text from '../text/Text'
 
-export default props => {
+interface RoundTextButtonProps {
+    style?: object
+    onPress: any
+    color?: string
+    size?: number
+    font?: string
+    content?: any
+}
+
+export default (props: RoundTextButtonProps) => {
     return (
         <TouchableOpacity
             style={{ ...props.style, ...styles.round }}

@@ -1,7 +1,12 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
 
-export default props => {
+interface AttackContainerProps {
+    height: number
+    children?: any
+}
+
+export default function AttackContainer(props: AttackContainerProps) {
     return (
         <View style={{ ...styles.attackContainer, bottom: props.height - 40 }}>
             {props.children}

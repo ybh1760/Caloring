@@ -2,7 +2,13 @@ import React from 'react'
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import Colors from '../../../../constants/Colors'
 
-export default props => {
+interface AttackButtonProps {
+    onPress: any
+    style?: object
+    children?: object
+}
+
+export default function Attack(props: AttackButtonProps) {
     return (
         <TouchableOpacity
             onPress={() => {

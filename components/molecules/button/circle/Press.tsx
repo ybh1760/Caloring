@@ -12,8 +12,14 @@ import styled from 'styled-components/native'
 import Colors from '../../../../constants/Colors'
 import Text from '../../../atoms/text/Text'
 
-export default props => {
-    let TouchableCmp = TouchableOpacity
+interface PressButtonProps {
+    style?: object
+    onPress: any
+    title: string
+}
+
+export default function Press(props: PressButtonProps) {
+    let TouchableCmp: any = TouchableOpacity
 
     if (Platform.OS === 'android' && Platform.Version >= 23) {
         TouchableCmp = TouchableNativeFeedback

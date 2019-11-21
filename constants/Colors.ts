@@ -11,4 +11,5 @@ export default {
     stopGrey: '#979797',
     friendColor: '#C89E9A',
     friendsBackground: '#B5C9FB',
+    headerButton: 'black',
 }
