@@ -46,9 +46,8 @@ export default function RunningPage(props) {
                 }
             >
                 <View style={styles.content}>
-                    <View style={styles.imageContainer}>
-                        {runImageHandler(motion)}
-                    </View>
+                    {runImageHandler(motion)}
+
                     <RunBottom
                         navigation={props.navigation}
                         isRun={isRun => {
@@ -112,7 +111,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
-    imageContainer: { width: 120, height: 160 },
 })
 
 //410x780

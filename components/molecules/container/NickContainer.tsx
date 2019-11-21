@@ -3,6 +3,8 @@ import { Dimensions } from 'react-native'
 import styled from 'styled-components/native'
 
 import Text from '../../atoms/text/Text'
+import Rem from '../../../constants/Rem'
+import FontSize from '../../../constants/FontSize'
 
 const { width } = Dimensions.get('window')
 
@@ -13,17 +15,17 @@ interface NickContainerProps {
 export default function NickContainer(props: NickContainerProps) {
     return (
         <NickBox>
-            <Text>{props.nick}</Text>
+            <Text size={FontSize(1)}>양병훈</Text>
         </NickBox>
     )
 }
 
 const NickBox = styled.View({
-    width: width * 0.2,
-    height: 24,
     backgroundColor: 'white',
-    borderRadius: 12,
-    marginBottom: 20,
+    borderRadius: Rem(),
+    marginBottom: Rem(),
+    paddingHorizontal: Rem() * 2,
+    paddingVertical: Rem() / 4,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',

@@ -33,12 +33,10 @@ export default props => {
         <Wrapper>
             <NickContainer nick={userData.name} />
             <Content>
-                <AttackContainer height={ScreenHeight * 0.32}>
-                    <Attack onPress={attack}>
-                        <AttackIcon width={35} height={35} />
-                    </Attack>
+                <AttackContainer height={ScreenHeight * 0.32} onPress={attack}>
+                    <AttackIcon width={35} height={35} />
                 </AttackContainer>
-                <AttackTextButton onPress={attack} />
+
                 <Text
                     size={FontSize(3)}
                     font="medium"

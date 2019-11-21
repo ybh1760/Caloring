@@ -24,8 +24,8 @@ export default function MainPage(props: any) {
                         : require('../../assets/backgroundImg/mainBackgroundSmall.png')
                 }
             >
-                <Message />
-                {imageHandler(3)}
+                {/* <Message /> */}
+                {imageHandler(1)}
 
                 <Bottom navigation={props.navigation} />
             </Background>

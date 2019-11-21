@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View, Image, StyleSheet, PixelRatio, Dimensions } from 'react-native'
 
 const { width: ScreenWidth } = Dimensions.get('window')
@@ -6,60 +6,46 @@ const { width: ScreenWidth } = Dimensions.get('window')
 export default fat => {
     if (fat === 1) {
         return (
-            <View style={styles.charactor1}>
-                <Image
-                    source={
-                        (src = require(`../assets/CharactorImg/main${1}.png`))
-                    }
-                    style={styles.image}
-                />
-            </View>
+            <Image
+                source={(src = require(`../assets/CharactorImg/main1.png`))}
+                style={styles.charactor1}
+            />
         )
     } else if (fat === 2) {
         return (
-            <View style={styles.charactor2}>
-                <Image
-                    source={(src = require('../assets/CharactorImg/main2.png'))}
-                    style={styles.image}
-                />
-            </View>
+            <Image
+                source={(src = require('../assets/CharactorImg/main2.png'))}
+                style={styles.charactor2}
+            />
         )
     } else if (fat === 3) {
         return (
-            <View style={styles.charactor3}>
-                <Image
-                    source={(src = require('../assets/CharactorImg/main3.png'))}
-                    style={styles.image}
-                />
-            </View>
+            <Image
+                source={(src = require('../assets/CharactorImg/main3.png'))}
+                style={styles.charactor3}
+            />
         )
     } else {
         return (
-            <View style={styles.charactor1}>
-                <Image
-                    source={(src = require('../assets/CharactorImg/main1.png'))}
-                    style={styles.image}
-                />
-            </View>
+            <Image
+                source={(src = require('../assets/CharactorImg/main1.png'))}
+                style={styles.charactor1}
+            />
         )
     }
 }
 
 const styles = StyleSheet.create({
     charactor1: {
-        width: 105,
-        height: 131,
+        width: ScreenWidth > 360 ? 105 * 1.2 : 105,
+        height: ScreenWidth > 360 ? 131 * 1.2 : 131,
     },
     charactor2: {
-        width: 105,
-        height: 96,
+        width: ScreenWidth > 360 ? 105 * 1.2 : 105,
+        height: ScreenWidth > 360 ? 96 * 1.2 : 96,
     },
     charactor3: {
-        width: 105,
-        height: 88,
-    },
-    image: {
-        width: '100%',
-        height: '100%',
+        width: ScreenWidth > 360 ? 105 * 1.2 : 105,
+        height: ScreenWidth > 360 ? 88 * 1.2 : 88,
     },
 })

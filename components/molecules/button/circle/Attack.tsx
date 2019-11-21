@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
+import styled from 'styled-components/native'
 
 import Colors from '../../../../constants/Colors'
 import Rem from '../../../../constants/Rem'
@@ -8,6 +9,7 @@ interface AttackButtonProps {
     onPress: any
     style?: object
     children?: object
+    dim: number
 }
 
 export default function Attack(props: AttackButtonProps) {
@@ -17,20 +19,18 @@ export default function Attack(props: AttackButtonProps) {
                 props.onPress()
             }}
         >
-            <View style={{ ...styles.circle, ...props.style }}>
+            <Circle style={props.style} dim={props.dim}>
                 {props.children}
-            </View>
+            </Circle>
         </TouchableOpacity>
     )
 }
 
-const styles = StyleSheet.create({
-    circle: {
-        width: Rem() * 4.5,
-        height: Rem() * 4.5,
-        borderRadius: Rem() * 2.25,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: Colors.attackRed,
-    },
-})
+const Circle = styled.View((props: { dim: number }) => ({
+    width: props.dim,
+    height: props.dim,
+    borderRadius: props.dim / 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.attackRed,
+}))
