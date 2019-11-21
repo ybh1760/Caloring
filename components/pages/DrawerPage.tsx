@@ -14,11 +14,11 @@ export default function DrawerPage(props: any) {
             <Wrapper>
                 <UserInfo
                     navigation={props.navigation}
-                    style={{ height: ScreenHeight >= 640 ? '25%' : '28%' }}
+                    style={{ height: ScreenHeight > 640 ? '25%' : '28%' }}
                 />
                 <UserItem
                     navigation={props.navigation}
-                    style={{ height: '30%' }}
+                    style={{ height: ScreenHeight > 640 ? '25%' : '28%' }}
                 />
                 <Line />
                 <UserData navigation={props.navigation} />

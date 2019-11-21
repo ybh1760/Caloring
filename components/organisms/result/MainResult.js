@@ -24,7 +24,11 @@ export default function MainResult(props) {
         <View style={styles.resultContainer}>
             <Image
                 source={(src = require('../../../assets/drawerImg/drawer.png'))}
-                style={{ marginTop: ScreenHeight * 0.04 }}
+                style={{
+                    marginTop: ScreenHeight * 0.04,
+                    width: ScreenHeight > 640 ? 56 * 1.2 : 56,
+                    height: ScreenHeight > 640 ? 77 * 1.2 : 77,
+                }}
             />
             <DisplayDatas
                 containerStyle={{

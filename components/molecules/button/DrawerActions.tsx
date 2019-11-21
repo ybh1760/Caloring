@@ -20,10 +20,10 @@ interface DrawerActionsProps {
 }
 
 export default function DrawerActions(props: DrawerActionsProps) {
-    const { font, content, color, textColor, onPress } = props
+    const { font, content, color, textColor, onPress, style } = props
 
     return (
-        <ActionContainer>
+        <ActionContainer style={style}>
             <Round
                 font={font}
                 content={content}

@@ -6,6 +6,7 @@ import Colors from '../../../constants/Colors'
 import DrawerActions from '../../molecules/button/DrawerActions'
 import Text from '../../atoms/text/Text'
 import DataGraph from '../../molecules/graph/DataGraph'
+import Rem from '../../../constants/Rem'
 
 const { width, height } = Dimensions.get('window')
 
@@ -18,8 +19,7 @@ export default function UserData(props: UserDataProps) {
     return (
         <Wrapper style={props.style}>
             <DrawerActions
-                font="regular"
-                style={{ marginTop: height * 0.03 }}
+                style={{ marginTop: Rem() * 1.8 }}
                 content="내 기록"
                 color={Colors.drawerBlue}
                 textColor="white"

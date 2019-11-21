@@ -1,16 +1,14 @@
-import { Dimensions } from 'react-native'
 import styled from 'styled-components/native'
 
 import Colors from '../../../constants/Colors'
-
-const { width } = Dimensions.get('window')
+import Rem from '../../../constants/Rem'
 
 const ItemBox = styled.View({
-    width: width * 0.3,
-    height: width * 0.3,
+    width: Rem() * 7.5,
+    height: Rem() * 7.5,
     backgroundColor: Colors.itemBackColor,
-    marginRight: width * 0.03,
-    borderRadius: 10,
+    marginRight: Rem() * 0.7,
+    borderRadius: Rem() * 1.2,
 })
 
 export default ItemBox

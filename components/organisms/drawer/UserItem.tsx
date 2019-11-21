@@ -1,13 +1,11 @@
 import React from 'react'
-import { Dimensions } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import styled from 'styled-components/native'
 
 import Colors from '../../../constants/Colors'
 import DrawerActions from '../../molecules/button/DrawerActions'
 import Item from '../../atoms/item/Item'
-
-const { height } = Dimensions.get('window')
+import Rem from '../../../constants/Rem'
 
 interface UserItem {
     navigation: any
@@ -18,8 +16,7 @@ export default function UserItem(props: UserItem) {
     return (
         <Wrapper style={props.style}>
             <DrawerActions
-                font="regular"
-                style={{ marginTop: 20 }}
+                style={{ marginTop: Rem() * 1.8 }}
                 content="내 아이템"
                 color={Colors.drawerBlue}
                 textColor="white"
@@ -31,8 +28,6 @@ export default function UserItem(props: UserItem) {
                         <Item />
                         <Item />
                         <Item />
-                        <Item />
-                        <Item />
                     </Items>
                 </ScrollView>
             </ItemContainer>
@@ -40,15 +35,18 @@ export default function UserItem(props: UserItem) {
     )
 }
 
-const Wrapper = styled.View({})
+const Wrapper = styled.View({ flex: 1 })
 
 const Items = styled.View({
-    marginTop: height * 0.03,
     flexDirection: 'row',
-    height: '75%',
     width: '100%',
+    alignItems: 'center',
+    marginBottom: Rem() * 1.5,
 })
 
 const ItemContainer = styled.View({
     width: '100%',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
 })
