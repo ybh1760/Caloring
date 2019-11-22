@@ -1,14 +1,15 @@
 import React from 'react'
 import { View, Text, Alert } from 'react-native'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 import HeaderButton from '../molecules/button/HeaderButton'
 import FriendCard from '../molecules/friends/FriendCard'
 import Colors from '../../constants/Colors'
 import HeaderTitle from '../atoms/headerTitle/HeaderTitle'
+import Rem from '../../constants/Rem'
 
-export default function FriendsPage(props) {
+export default function FriendsPage(props: any) {
     return (
         <Wrapper>
             <FriendCard />
@@ -16,7 +17,7 @@ export default function FriendsPage(props) {
     )
 }
 
-FriendsPage.navigationOptions = navData => {
+FriendsPage.navigationOptions = (navData: any) => {
     return {
         headerTitle: <HeaderTitle title="FRIENDS" />,
         headerRight: (
@@ -37,6 +38,6 @@ FriendsPage.navigationOptions = navData => {
 
 const Wrapper = styled.View({
     flex: 1,
-    paddingTop: 10,
+    paddingTop: Rem(),
     backgroundColor: Colors.friendsBackground,
 })

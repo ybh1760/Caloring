@@ -20,13 +20,15 @@ import Rem from '../../../constants/Rem'
 
 const { width, height: ScreenHeight } = Dimensions.get('window')
 
-export default props => {
-    const userData = useSelector(state => state.userData.userData)
+interface MainBottomProps {
+    navigation: any
+}
+
+export default function MainBottom(props: MainBottomProps) {
+    const userData = useSelector((state: any) => state.userData.userData)
 
     const attack = () => {
-        // attackHandler()
-        Vibration.vibrate(500)
-        Alert.alert('ATTACK', '공격 되었습니다.', [{ text: '확인' }])
+        props.navigation.navigate('Friends')
     }
 
     return (
@@ -34,7 +36,7 @@ export default props => {
             <NickContainer nick={userData.name} />
             <Content>
                 <AttackContainer height={ScreenHeight * 0.32} onPress={attack}>
-                    <AttackIcon width={35} height={35} />
+                    <AttackIcon width={Rem() * 2.5} height={Rem() * 2.5} />
                 </AttackContainer>
 
                 <Text

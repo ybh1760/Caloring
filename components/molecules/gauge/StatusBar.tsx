@@ -29,10 +29,10 @@ export default function StatusBar(props: StatusBarProps) {
     return (
         <Background style={props.style}>
             <Content
+                style={props.gaugeStyle}
                 status={props.status}
                 gauge={props.gauge}
                 color={props.color}
-                style={props.gaugeStyle}
             />
         </Background>
     )
