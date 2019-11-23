@@ -8,8 +8,8 @@ import Text from '../atoms/text/Text'
 interface DisplayDataProps {
     meter: number
     sec: number
-    layorSize: number
-    dataSize: number
+    layorSize?: number
+    dataSize?: number
     containerStyle?: object
 }
 

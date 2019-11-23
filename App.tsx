@@ -8,7 +8,7 @@ import CaloringNavigator from './navigation/CaloringNavigator'
 import timeReducer from './store/reducers/time'
 import distanceReducer from './store/reducers/distance'
 import userData from './store/reducers/userData'
-import Loading from './components/pages/Loading'
+import Loading from './components/pages/LoadingPage'
 
 const rootReducer = combineReducers({
     time: timeReducer,

@@ -6,14 +6,13 @@ import { createDrawerNavigator } from 'react-navigation-drawer'
 
 import MainPage from '../components/pages/MainPage'
 import RunningPage from '../components/pages/RunningPage'
-import StartPage from '../components/pages/StartPage'
 import FriendsPage from '../components/pages/FriendsPage'
 import Colors from '../constants/Colors'
 import DrawerPage from '../components/pages/DrawerPage'
 import ResultPage from '../components/pages/ResultPage'
 import LogIn from '../components/pages/LogIn'
 
-const { width, height: ScreenHeight } = Dimensions.get('window')
+const { width: ScreenWidth, height: ScreenHeight } = Dimensions.get('window')
 
 const defaultNavOptions = {
     headerStyle: {
@@ -39,7 +38,7 @@ const DrawerNavigator = createDrawerNavigator(
         Charactor: CharactorNavigator,
     },
     {
-        drawerWidth: width * 0.85,
+        drawerWidth: ScreenWidth * 0.85,
         contentOptions: { activeTintColor: 'red' },
         contentComponent: props => {
             return <DrawerPage navigation={props.navigation} />
@@ -50,7 +49,6 @@ const DrawerNavigator = createDrawerNavigator(
 const MainNavigator = createSwitchNavigator({
     Drawer: DrawerNavigator,
     LogIn: LogIn,
-    Start: StartPage,
 })
 
 export default createAppContainer(MainNavigator)

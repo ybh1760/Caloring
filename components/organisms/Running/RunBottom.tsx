@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { StyleSheet, View, Dimensions } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import * as Location from 'expo-location'
+import styled from 'styled-components/native'
 
 import * as timeActions from '../../../store/actions/time'
 import * as distActions from '../../../store/actions/distance'
@@ -18,18 +19,18 @@ import StopRun from '../../atoms/button/StopRun'
 import FontSize from '../../../constants/FontSize'
 import Rem from '../../../constants/Rem'
 
-let resultId
+let resultId: any
 const { width, height } = Dimensions.get('window')
 
-export default function RunBottom(props) {
+export default function RunBottom(props: any) {
     const [isRunning, setIsRunnig] = useState(false)
     const [timeId, setTimeId] = useState()
     // const userData = useSelector(state => state.userData.userData)
 
-    const savedTimeStamp = useSelector(state => state.time.timeStamp)
+    const savedTimeStamp = useSelector((state: any) => state.time.timeStamp)
     const timeIndex = savedTimeStamp.length - 1
 
-    const savedDistance = useSelector(state => state.distance.distance)
+    const savedDistance = useSelector((state: any) => state.distance.distance)
     const disIndex = savedDistance.length - 1
 
     const [meter, setMeter] = useState(
@@ -44,7 +45,7 @@ export default function RunBottom(props) {
         setIsRunnig(true)
         props.isRun(true)
         const time = setInterval(() => {
-            setSec(prev => prev + 1)
+            setSec((prev: number) => prev + 1)
         }, 1000)
         setTimeId(time)
     }
@@ -58,7 +59,7 @@ export default function RunBottom(props) {
             const result = await Location.watchPositionAsync(
                 { timeInterval: 10000, distanceInterval: 10 },
                 position => {
-                    setMeter(prev => prev + 10)
+                    setMeter((prev: number) => prev + 10)
                 }
             )
             resultId = result
@@ -72,11 +73,6 @@ export default function RunBottom(props) {
         clearInterval(timeId)
         await dispatch(timeActions.saveTime(sec, false))
         await dispatch(distActions.setDistance(meter, false))
-        // if (userData.id !== undefined) {
-        //     userData.exercising = Math.floor((meter / userData.goal) * 100)
-        //     console.log(userData)
-        //     dispatch(userDataActions.updateUserData(userData))
-        // }
         setIsRunnig(false)
         props.isRun(false)
     }
@@ -89,34 +85,31 @@ export default function RunBottom(props) {
             resultId.remove()
         }
 
-        // if (userData.id !== undefined) {
-        //     userData.exercising = Math.floor((meter / userData.goal) * 100)
-        //     dispatch(userDataActions.updateUserData(userData))
-        // }
         setIsRunnig(false)
         props.isRun(false)
         props.navigation.navigate('Result')
     }
 
     return (
-        <View style={styles.bottom}>
-            <View style={styles.container}>
+        <Wrapper>
+            <MainContent>
                 <Status
                     image="grey"
                     title="칼로링포인트"
                     color={Colors.calGauge}
-                    // score={userData.exercising}
-                    // gauge={caloringTracker(userData.exercising)}
+                    score={70}
+                    gauge={70}
+                    status="caloring"
                 />
 
                 <DisplayDatas
-                    layerSize={FontSize(1)}
+                    layorSize={FontSize(1)}
                     dataSize={FontSize(4)}
                     meter={meter}
                     sec={sec}
                 />
 
-                <View style={styles.actions}>
+                <ActionContainer>
                     <IconButton onPress={finishRunning} color={Colors.stopGrey}>
                         <StopRun
                             width={Rem() * 2}
@@ -149,34 +142,34 @@ export default function RunBottom(props) {
                             />
                         </IconButton>
                     )}
-                </View>
-            </View>
-        </View>
+                </ActionContainer>
+            </MainContent>
+        </Wrapper>
     )
 }
 
-const styles = StyleSheet.create({
-    bottom: {
-        width: width,
-        height: height * 0.39,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-    },
-    container: {
-        width: '95%',
-        height: height * 0.32,
-        backgroundColor: '#fff',
-        elevation: 6,
-        paddingHorizontal: FontSize(2),
-        paddingTop: FontSize(1),
-        borderTopLeftRadius: 15,
-        borderTopRightRadius: 15,
-    },
-    actions: {
-        width: '65%',
-        flexDirection: 'row',
-        alignSelf: 'center',
-        justifyContent: 'space-between',
-        marginTop: 10,
-    },
+const Wrapper = styled.View({
+    width: width,
+    height: height * 0.39,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+})
+
+const MainContent = styled.View({
+    width: '95%',
+    height: height * 0.32,
+    backgroundColor: '#fff',
+    elevation: 6,
+    paddingHorizontal: FontSize(2),
+    paddingTop: FontSize(1),
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+})
+
+const ActionContainer = styled.View({
+    width: '65%',
+    flexDirection: 'row',
+    alignSelf: 'center',
+    justifyContent: 'space-between',
+    marginTop: 10,
 })

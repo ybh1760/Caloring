@@ -29,9 +29,10 @@ export default function FriendListItem(props: FriendListItemProps) {
                 ></View>
             </Character>
             <FriendData>
-                <View style={{ marginBottom: 5 }}>
-                    <Text size={FontSize(1)}>최윤영</Text>
-                </View>
+                <Text style={{ marginBottom: 5 }} size={FontSize(1)}>
+                    최윤영
+                </Text>
+
                 <StatusBar
                     style={{
                         height: Rem(),
@@ -75,12 +76,3 @@ const Character = styled.View({
 const FriendData = styled.View({
     width: '60%',
 })
-
-// const AttackButton = styled.TouchableOpacity({
-//     width: ScreenWidth * 0.15,
-//     height: ScreenWidth * 0.15,
-//     borderRadius: ScreenWidth * 0.15 * 0.5,
-//     backgroundColor: Colors.yellow,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-// })

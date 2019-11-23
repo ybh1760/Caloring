@@ -6,7 +6,7 @@ import styled from 'styled-components/native'
 
 import HeaderTitle from '../atoms/headerTitle/HeaderTitle'
 import HeaderButton from '../molecules/button/HeaderButton'
-import imageHandler from '../../functions/imageHandler'
+import ImageHandler from '../../functions/ImageHandler'
 import Bottom from '../organisms/main/MainBottom'
 import Message from '../molecules/message/Message'
 
@@ -20,13 +20,13 @@ export default function MainPage(props: any) {
             <Background
                 source={
                     ScreenHeight > 640
-                        ? require('../../assets/backgroundImg/mainBackground.png')
+                        ? require('../../assets/backgroundImg/backgroundVer1.png')
                         : require('../../assets/backgroundImg/mainBackgroundSmall.png')
                 }
             >
                 {/* <Message /> */}
-                {imageHandler(1)}
-
+                {/* {imageHandler(Math.floor(Math.random() * 5 + 1))} */}
+                <ImageHandler fat={Math.floor(Math.random() * 5 + 1)} />
                 <Bottom navigation={props.navigation} />
             </Background>
         </Wrapper>

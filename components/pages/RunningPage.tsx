@@ -7,6 +7,7 @@ import {
     Alert,
 } from 'react-native'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
+import styled from 'styled-components/native'
 
 import HeaderButton from '../molecules/button/HeaderButton'
 import RunBottom from '../organisms/Running/RunBottom'
@@ -15,9 +16,9 @@ import LeftArrow from '../atoms/button/LeftArrow'
 import runImageHandler from '../../functions/runImageHandler'
 import HeaderTitle from '../atoms/headerTitle/HeaderTitle'
 
-const { width, height: ScreenHeight } = Dimensions.get('window')
+const { height: ScreenHeight } = Dimensions.get('window')
 
-export default function RunningPage(props) {
+export default function RunningPage(props: any) {
     const [timeId, setTimeId] = useState(0)
     const [isRunning, setIsrunning] = useState(false)
     const [motion, setMotion] = useState(true)
@@ -35,32 +36,29 @@ export default function RunningPage(props) {
     }, [isRunning, setMotion])
 
     return (
-        <View style={styles.screen}>
-            <ImageBackground
-                style={styles.imageBackground}
+        <Wrapper>
+            <Background
                 source={
-                    (src =
-                        ScreenHeight > 640
-                            ? require('../../assets/backgroundImg/runBackground.png')
-                            : require('../../assets/backgroundImg/mainBackgroundSmall.png'))
+                    ScreenHeight > 640
+                        ? require('../../assets/backgroundImg/runBackground.png')
+                        : require('../../assets/backgroundImg/mainBackgroundSmall.png')
                 }
             >
-                <View style={styles.content}>
+                <Content>
                     {runImageHandler(motion)}
-
                     <RunBottom
                         navigation={props.navigation}
-                        isRun={isRun => {
+                        isRun={(isRun: boolean) => {
                             setIsrunning(isRun)
                         }}
                     />
-                </View>
-            </ImageBackground>
-        </View>
+                </Content>
+            </Background>
+        </Wrapper>
     )
 }
 
-RunningPage.navigationOptions = navData => {
+RunningPage.navigationOptions = (navData: any) => {
     const isRunning = navData.navigation.getParam('isRun')
 
     return {
@@ -103,14 +101,16 @@ RunningPage.navigationOptions = navData => {
     }
 }
 
-const styles = StyleSheet.create({
-    screen: { flex: 1 },
-    imageBackground: { flex: 1 },
-    content: {
-        height: '100%',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-    },
+const Wrapper = styled.View({
+    flex: 1,
 })
 
-//410x780
+const Background = styled.ImageBackground({
+    flex: 1,
+})
+
+const Content = styled.View({
+    height: '100%',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+})

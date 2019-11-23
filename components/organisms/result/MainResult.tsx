@@ -1,34 +1,30 @@
 import React from 'react'
 import { View, StyleSheet, Dimensions, Image, PixelRatio } from 'react-native'
 import { useSelector } from 'react-redux'
+import styled from 'styled-components/native'
 
 import DisplayDatas from '../DisplayDatas'
 import StatusBar from '../../molecules/gauge/StatusBar'
 import Colors from '../../../constants/Colors'
 import Round from '../../atoms/roundEdge/Round'
-import Text from '../../atoms/text/Text'
 import DataGraph from '../../molecules/graph/DataGraph'
+import Text from '../../atoms/text/Text'
 import FontSize from '../../../constants/FontSize'
 import Rem from '../../../constants/Rem'
 
 const { width, height: ScreenHeight } = Dimensions.get('window')
 
-export default function MainResult(props) {
-    const savedTimeStamp = useSelector(state => state.time.timeStamp)
+export default function MainResult(props: any) {
+    const savedTimeStamp = useSelector((state: any) => state.time.timeStamp)
     const timeIndex = savedTimeStamp.length - 2
 
-    const savedDistance = useSelector(state => state.distance.distance)
+    const savedDistance = useSelector((state: any) => state.distance.distance)
     const disIndex = savedDistance.length - 2
 
     return (
-        <View style={styles.resultContainer}>
-            <Image
-                source={(src = require('../../../assets/drawerImg/drawer.png'))}
-                style={{
-                    marginTop: ScreenHeight * 0.04,
-                    width: ScreenHeight > 640 ? 56 * 1.2 : 56,
-                    height: ScreenHeight > 640 ? 77 * 1.2 : 77,
-                }}
+        <Wrapper>
+            <CharacterImage
+                source={require('../../../assets/drawerImg/drawer.png')}
             />
             <DisplayDatas
                 containerStyle={{
@@ -89,17 +85,21 @@ export default function MainResult(props) {
                     }}
                 />
             </View>
-        </View>
+        </Wrapper>
     )
 }
 
-const styles = StyleSheet.create({
-    resultContainer: {
-        width: '95%',
-        height: '95%',
-        backgroundColor: 'white',
-        borderRadius: 10,
-        elevation: 2,
-        alignItems: 'center',
-    },
+const Wrapper = styled.View({
+    width: '95%',
+    height: '95%',
+    backgroundColor: 'white',
+    borderRadius: 10,
+    elevation: 2,
+    alignItems: 'center',
+})
+
+const CharacterImage = styled.Image({
+    marginTop: ScreenHeight * 0.04,
+    width: ScreenHeight > 640 ? 56 * 1.2 : 56,
+    height: ScreenHeight > 640 ? 77 * 1.2 : 77,
 })
