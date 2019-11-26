@@ -1,32 +1,33 @@
 import React from 'react'
-import { Alert, Dimensions } from 'react-native'
+import { Alert, Dimensions, ImageBackground } from 'react-native'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
 import HeaderTitle from '../atoms/headerTitle/HeaderTitle'
 import HeaderButton from '../molecules/button/HeaderButton'
-import ImageHandler from '../../functions/ImageHandler'
+import Character from '../atoms/Character/Character'
 import Bottom from '../organisms/main/MainBottom'
 import Message from '../molecules/message/Message'
+import Background from '../atoms/ImageBackground/Background'
 
 const { width: ScreenWidth, height: ScreenHeight } = Dimensions.get('window')
 
 export default function MainPage(props: any) {
     const userData = useSelector((state: any) => state.userData.userData)
-
+    const fat = Math.floor(Math.random() * 5 + 1)
     return (
         <Wrapper>
             <Background
-                source={
-                    ScreenHeight > 640
-                        ? require('../../assets/backgroundImg/backgroundVer1.png')
-                        : require('../../assets/backgroundImg/mainBackgroundSmall.png')
-                }
+                style={{
+                    flex: 1,
+                    justifyContent: 'flex-end',
+                    alignItems: 'center',
+                }}
+                fat={fat}
             >
                 {/* <Message /> */}
-                {/* {imageHandler(Math.floor(Math.random() * 5 + 1))} */}
-                <ImageHandler fat={Math.floor(Math.random() * 5 + 1)} />
+                <Character fat={fat} />
                 <Bottom navigation={props.navigation} />
             </Background>
         </Wrapper>
@@ -71,10 +72,4 @@ MainPage.navigationOptions = (navData: any) => {
 }
 const Wrapper = styled.View({
     flex: 1,
-})
-
-const Background = styled.ImageBackground({
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
 })

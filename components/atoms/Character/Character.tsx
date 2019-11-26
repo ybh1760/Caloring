@@ -8,42 +8,42 @@ export default function ImageHandler(props: any) {
         case 1:
             return (
                 <Image
-                    source={require(`../assets/CharactorImg/characterVer1.png`)}
+                    source={require(`../../../assets/CharactorImg/characterVer1.png`)}
                     style={styles.charactor1}
                 />
             )
         case 2:
             return (
                 <Image
-                    source={require(`../assets/CharactorImg/characterVer2.png`)}
+                    source={require(`../../../assets/CharactorImg/characterVer2.png`)}
                     style={styles.charactor2}
                 />
             )
         case 3:
             return (
                 <Image
-                    source={require(`../assets/CharactorImg/characterVer3.png`)}
+                    source={require(`../../../assets/CharactorImg/characterVer3.png`)}
                     style={styles.charactor3}
                 />
             )
         case 4:
             return (
                 <Image
-                    source={require(`../assets/CharactorImg/characterVer4.png`)}
+                    source={require(`../../../assets/CharactorImg/characterVer4.png`)}
                     style={styles.charactor4}
                 />
             )
         case 5:
             return (
                 <Image
-                    source={require(`../assets/CharactorImg/characterVer5.png`)}
+                    source={require(`../../../assets/CharactorImg/characterVer5.png`)}
                     style={styles.charactor5}
                 />
             )
         default:
             return (
                 <Image
-                    source={require(`../assets/CharactorImg/characterVer5.png`)}
+                    source={require(`../../../assets/CharactorImg/characterVer5.png`)}
                     style={styles.charactor5}
                 />
             )

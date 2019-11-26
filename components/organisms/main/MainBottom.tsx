@@ -17,6 +17,7 @@ import attackHandler from '../../../functions/attackHandler'
 import Text from '../../atoms/text/Text'
 import FontSize from '../../../constants/FontSize'
 import Rem from '../../../constants/Rem'
+import Run from '../../molecules/button/gradient/LinearGradient'
 
 const { width, height: ScreenHeight } = Dimensions.get('window')
 
@@ -36,7 +37,7 @@ export default function MainBottom(props: MainBottomProps) {
             <NickContainer nick={userData.name} />
             <Content>
                 <AttackContainer height={ScreenHeight * 0.32} onPress={attack}>
-                    <AttackIcon width={Rem() * 2.5} height={Rem() * 2.5} />
+                    <AttackIcon width={31} height={31} />
                 </AttackContainer>
 
                 <Text
@@ -62,13 +63,18 @@ export default function MainBottom(props: MainBottomProps) {
                     status="fat"
                     gauge={gaugeTracker(userData.fat)}
                 />
-                <RunButton
-                    title="Run"
+                <Run
+                    colors={Colors.gradient.run}
                     style={{ alignSelf: 'center', elevation: 5 }}
                     onPress={() => {
                         props.navigation.navigate('Run')
                     }}
-                />
+                    dim={Rem() * 6}
+                >
+                    <Text size={FontSize(2)} font="black">
+                        RUN
+                    </Text>
+                </Run>
             </Content>
         </Wrapper>
     )
@@ -83,8 +89,8 @@ const Wrapper = styled.View({
 const Content = styled.View({
     backgroundColor: 'white',
     height: ScreenHeight * 0.32,
-    paddingHorizontal: FontSize(2),
-    paddingTop: Rem() / 2,
+    paddingHorizontal: Rem() * 1.8,
+    paddingTop: Rem() * 1.2,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
     elevation: 3,

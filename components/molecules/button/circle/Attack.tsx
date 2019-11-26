@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
+import { LinearGradient } from 'expo-linear-gradient'
 
 import Colors from '../../../../constants/Colors'
 import Rem from '../../../../constants/Rem'
@@ -10,6 +11,7 @@ interface AttackButtonProps {
     style?: object
     children?: object
     dim: number
+    colors: any
 }
 
 export default function Attack(props: AttackButtonProps) {
@@ -19,18 +21,19 @@ export default function Attack(props: AttackButtonProps) {
                 props.onPress()
             }}
         >
-            <Circle style={props.style} dim={props.dim}>
+            <LinearGradient
+                colors={props.colors}
+                style={{
+                    width: Math.floor(props.dim),
+                    height: Math.floor(props.dim),
+                    borderRadius: Math.floor(props.dim) / 2,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    elevation: 5,
+                }}
+            >
                 {props.children}
-            </Circle>
+            </LinearGradient>
         </TouchableOpacity>
     )
 }
-
-const Circle = styled.View((props: { dim: number }) => ({
-    width: props.dim,
-    height: props.dim,
-    borderRadius: props.dim / 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: Colors.attackRed,
-}))

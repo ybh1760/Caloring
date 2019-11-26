@@ -1,16 +1,24 @@
 import React from 'react'
-import { View, Text, TextInput, Button, AsyncStorage } from 'react-native'
+import {
+    View,
+    Text,
+    TextInput,
+    Button,
+    AsyncStorage,
+    WebView,
+} from 'react-native'
 import styled from 'styled-components'
 import * as Auth from '../../functions/googleOAuth'
 
 export default props => {
     return (
         <Screen>
-            <Button
-                title="google"
-                onPress={async () => {
-                    const authState = await Auth.signInAsync()
+            <WebView
+                source={{
+                    uri:
+                        'https://kauth.kakao.com/oauth/authorize?client_id=8957674e13342897135e3326bc0a4e57&redirect_uri=http://13.124.85.168:8080/login&response_type=code',
                 }}
+                style={{ marginTop: 20 }}
             />
         </Screen>
     )
@@ -18,8 +26,6 @@ export default props => {
 
 const Screen = styled.View({
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
 })
 
 const Input = styled.View({})

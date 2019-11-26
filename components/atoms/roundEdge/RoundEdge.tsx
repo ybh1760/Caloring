@@ -15,7 +15,5 @@ export default (props: any) => {
 const styles = StyleSheet.create({
     round: {
         borderRadius: 10,
-        borderWidth: 1,
-        borderColor: 'red',
     },
 })

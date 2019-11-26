@@ -18,8 +18,8 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk))
 
-const fetchFont = () => {
-    return Font.loadAsync({
+const fetchFont = async () => {
+    return await Font.loadAsync({
         black: require('./assets/fonts/Roboto-Black.ttf'),
         blackItalic: require('./assets/fonts/Roboto-BlackItalic.ttf'),
         bold: require('./assets/fonts/Roboto-Bold.ttf'),
