@@ -40,17 +40,17 @@ export default function StatusBar(props: StatusBarProps) {
 
 const Background = styled.View({
     width: '100%',
-    height: Rem() * 1.5,
+    height: Rem() * 2,
     borderRadius: Rem() * 7.5,
     backgroundColor: Colors.barStatus,
-    padding: Rem() * 0.25,
+    padding: Rem() * 0.3,
 })
 
 const Content = styled.View(
     (props: { status: string; gauge: number; color: string }) => ({
         width: props.status === 'fat' ? props.gauge : '33.33%',
-        height: Rem(),
-        borderRadius: Rem() * 0.5,
+        height: Rem() * 1.4,
+        borderRadius: Rem() * 0.7,
         backgroundColor: props.color,
     })
 )

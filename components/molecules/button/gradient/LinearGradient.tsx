@@ -19,7 +19,7 @@ export default function LinGradient(props: any) {
     if (Platform.OS === 'android' && Platform.Version >= 23) {
         TouchableCmp = TouchableNativeFeedback
     }
-    console.log(props.dim)
+
     return (
         <Wrapper style={props.style} dim={props.dim}>
             <TouchableCmp onPress={props.onPress}>
@@ -44,6 +44,7 @@ const styles = (props: any) => {
         },
     })
 }
+
 const Wrapper = styled.View<{ dim: number }>((props: any) => {
     return {
         ...styles(props.dim).circle,

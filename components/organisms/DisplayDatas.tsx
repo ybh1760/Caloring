@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components/native'
 
-import meterCheck from '../atoms/displayMeter/Meters'
-import { minTimer, secTimer } from '../atoms/timer/Timer'
+import meterCheck from '../atoms/displayDatas/Meters'
+import { minTimer, secTimer } from '../atoms/displayDatas/Times'
 import Text from '../atoms/text/Text'
 
 interface DisplayDataProps {

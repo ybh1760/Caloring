@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native'
 
 import Label from '../gauge/Label'
 import StatusBar from '../gauge/StatusBar'
+import Rem from '../../../constants/Rem'
 
 interface StatusProps {
     image: string
@@ -28,5 +29,5 @@ export default function StatusContainer(props: StatusProps) {
 }
 
 const styles = StyleSheet.create({
-    status: { marginBottom: 10 },
+    status: { marginBottom: Rem() * 1.15 },
 })

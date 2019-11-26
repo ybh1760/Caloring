@@ -23,9 +23,9 @@ export default function Label(props: LabelProps) {
     return (
         <Wrapper>
             {image === 'grey' ? (
-                <Grey width={FontSize(2)} height={FontSize(2)} />
+                <Grey width={Rem() * 1.8} height={Rem() * 1.8} />
             ) : (
-                <Red width={FontSize(2)} height={FontSize(2)} />
+                <Red width={Rem() * 1.8} height={Rem() * 1.8} />
             )}
             <Text
                 size={FontSize(1)}
@@ -41,7 +41,7 @@ export default function Label(props: LabelProps) {
 
 const Wrapper = styled.View({
     flexDirection: 'row',
-    marginBottom: Rem() / 2,
+    marginBottom: Rem() * 0.7,
     alignItems: 'center',
 })
 

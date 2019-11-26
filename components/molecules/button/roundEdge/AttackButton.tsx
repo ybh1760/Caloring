@@ -13,12 +13,8 @@ interface AttckButtonTextProps {
 
 export default function AttackButton(props: AttckButtonTextProps) {
     return (
-        <RoundAttack
-            width={Rem() * 4.5}
-            style={styles.position}
-            onPress={props.onPress}
-        >
-            <Text size={Rem() * 0.8} align="center" color="white" font="bold">
+        <RoundAttack style={styles.position} onPress={props.onPress}>
+            <Text size={Rem() * 1.2} align="center" color="white" font="medium">
                 ATTACK
             </Text>
         </RoundAttack>
@@ -27,7 +23,8 @@ export default function AttackButton(props: AttckButtonTextProps) {
 
 const styles = StyleSheet.create({
     position: {
-        marginTop: Rem() * 0.2,
+        width: '100%',
+        marginTop: Rem() * 0.36,
         alignSelf: 'center',
         backgroundColor: Colors.attackRed,
     },

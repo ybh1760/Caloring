@@ -13,7 +13,7 @@ export default {
     friendsBackground: '#B5C9FB',
     headerButton: 'black',
     gradient: {
-        run: ['#ffba21', '#ffea2f'],
-        attack: ['#d60404', '#ffaa06'],
+        run: ['#ffea2f', '#ffba21'],
+        attack: ['#ffaa06', '#d60404'],
     },
 }

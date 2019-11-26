@@ -45,7 +45,11 @@ export default function FriendListItem(props: FriendListItemProps) {
                     color={Colors.fatGauge}
                 />
             </FriendData>
-            <AttackButton onPress={() => {}} dim={ScreenWidth * 0.15}>
+            <AttackButton
+                onPress={() => {}}
+                dim={ScreenWidth * 0.15}
+                colors={Colors.gradient.attack}
+            >
                 <Attack width={31} height={31} />
             </AttackButton>
         </FriendCard>

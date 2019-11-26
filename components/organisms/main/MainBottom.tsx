@@ -4,12 +4,9 @@ import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
 import AttackContainer from '../../molecules/container/AttackContainer'
-import Attack from '../../molecules/button/circle/Attack'
-import RunButton from '../../molecules/button/circle/Press'
 import NickContainer from '../../molecules/container/NickContainer'
 import AttackIcon from '../../atoms/button/AttackIcon'
 import Status from '../../molecules/container/StatusContainer'
-import AttackTextButton from '../../molecules/button/roundEdge/AttackButton'
 import Colors from '../../../constants/Colors'
 import gaugeTracker from '../../../functions/gaugeTrack'
 import caloringTracker from '../../../functions/caloringTracker'
@@ -36,20 +33,20 @@ export default function MainBottom(props: MainBottomProps) {
         <Wrapper>
             <NickContainer nick={userData.name} />
             <Content>
-                <AttackContainer height={ScreenHeight * 0.32} onPress={attack}>
-                    <AttackIcon width={31} height={31} />
+                <AttackContainer height={ScreenHeight * 0.35} onPress={attack}>
+                    <AttackIcon width={Rem() * 4.3} height={Rem() * 4.3} />
                 </AttackContainer>
 
                 <Text
-                    size={FontSize(3)}
+                    size={FontSize(2)}
                     font="medium"
-                    style={{ marginBottom: ScreenHeight * 0.01 }}
+                    style={{ marginBottom: Rem() * 0.9 }}
                 >
                     Level 10
                 </Text>
                 <Status
                     image="grey"
-                    title="칼로링포인트"
+                    title="칼로링 포인트"
                     color={Colors.calGauge}
                     score={userData.exercising}
                     status="Caloring"
@@ -69,9 +66,9 @@ export default function MainBottom(props: MainBottomProps) {
                     onPress={() => {
                         props.navigation.navigate('Run')
                     }}
-                    dim={Rem() * 6}
+                    dim={Rem() * 8.2}
                 >
-                    <Text size={FontSize(2)} font="black">
+                    <Text size={FontSize(3)} font="bold">
                         RUN
                     </Text>
                 </Run>
@@ -81,16 +78,16 @@ export default function MainBottom(props: MainBottomProps) {
 }
 
 const Wrapper = styled.View({
-    width: '95%',
+    width: '97%',
     height: ScreenHeight * 0.39,
     justifyContent: 'flex-end',
 })
 
 const Content = styled.View({
     backgroundColor: 'white',
-    height: ScreenHeight * 0.32,
-    paddingHorizontal: Rem() * 1.8,
-    paddingTop: Rem() * 1.2,
+    height: ScreenHeight * 0.35,
+    paddingHorizontal: Rem() * 2.53,
+    paddingTop: Rem() * 1.8,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
     elevation: 3,
